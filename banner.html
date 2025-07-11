@@ -459,9 +459,9 @@
                 } else {
                     navbar.classList.remove('scrolled');
                 }
-                
+
                 // Parallax effect
-                const scrollPosition = window.scrollY;
+           
                 const heroBg = document.querySelector('.hero-bg');
                 heroBg.style.transform = `scale(${1.05 + scrollPosition * 0.0002})`;
             });
