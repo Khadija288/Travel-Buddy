@@ -102,7 +102,7 @@
             box-shadow: 0 12px 30px rgba(52, 152, 219, 0.6);
         }
         
-         /* Animated Background Elements */
+         /*Plan Trip Animated Background Elements */
         .floating {
             position: absolute;
             animation: floating 15s infinite linear;
