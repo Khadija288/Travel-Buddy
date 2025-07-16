@@ -392,7 +392,14 @@
         }
         
         .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: var(--transition);
+            box-shadow: 0 5px 25px rgba(52, 152, 219, 0.4);
         }
     
