@@ -68,36 +68,7 @@
             animation: pulse 2s infinite;
         }
         
-        .nav-link {
-            color: rgba(255, 255, 255, 0.9) !important;
-            font-weight: 500;
-            margin: 0 12px;
-            transition: var(--transition);
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: white !important;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: var(--transition);
-        }
-        
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        
+       
         .btn-gradient {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border: none;
