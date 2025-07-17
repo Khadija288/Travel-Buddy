@@ -272,7 +272,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(44, 62, 80, 0.9);
+            background: #0f172ad9;
         }
         
         .destination-card {
@@ -336,7 +336,6 @@
         /* Gallery */
         .gallery-section {
             padding: 100px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
         .gallery-item {
@@ -409,7 +408,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(44, 62, 80, 0.85);
+            background: #0f172ae8;
         }
         
         .testimonial-card {
