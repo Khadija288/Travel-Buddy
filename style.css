@@ -402,4 +402,30 @@
             transition: var(--transition);
             box-shadow: 0 5px 25px rgba(52, 152, 219, 0.4);
         }
+        .links{
+             color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            margin: 0 12px;
+            transition: var(--transition);
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        .links:hover{
+             color: white !important;
+        }
+        .links::after{
+             content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition); 
+        }
+         .links:hover::after{
+            width: 100%;
+         }
     
