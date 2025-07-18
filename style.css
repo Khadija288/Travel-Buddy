@@ -749,7 +749,7 @@
             margin-bottom: 12px;
             list-style: none;
         }
-/*         
+        
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
@@ -780,7 +780,7 @@
         .social-links a:hover {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             transform: translateY(-5px);
-        } */
+        }
         
         .copyright {
             background: rgba(0, 0, 0, 0.2);
