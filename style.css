@@ -930,7 +930,7 @@
         } 
 
 /* AI Chatbot css */
-         .container {
+         .containerai {
             max-width: 1200px;
             width: 100%;
             display: flex;
@@ -938,7 +938,7 @@
             gap: 30px;
         } 
         
-        / .header {
+         .header {
             text-align: center;
             padding: 20px;
             animation: fadeIn 1s ease-out;
@@ -958,3 +958,28 @@
             max-width: 700px;
             margin: 0 auto;
         }
+
+         .chat-container {
+            display: flex;
+            gap: 30px;
+            height: 70vh;
+        }
+        
+        .chat-intro {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeInRight 0.8s ease-out;
+        }
+        
+        .chat-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
