@@ -1,11 +1,11 @@
-    :root {
+  :root {
             --primary: #3498db;
             --secondary: #2ecc71;
             --accent: #e74c3c;
             --dark: #0f172a;
             --light: #f8f9fa;
             --gold: #f1c40f;
-            --transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+            --transition: all 0.3s ease;
         }
         
         * {
