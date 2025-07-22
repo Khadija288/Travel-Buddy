@@ -913,7 +913,7 @@
         }
          */
         /* Buttons */
-         /* .btn-gradient {
+          .btn-gradient {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
             color: white;
