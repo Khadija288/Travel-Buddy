@@ -881,7 +881,7 @@
         }
         
         /* Contact Info */
-        /* .contact-info-card {
+        .contact-info-card {
             background: rgba(255,255,255,0.05);
             border-radius: 20px;
             padding: 30px;
@@ -902,18 +902,17 @@
             color: var(--gold);
             font-size: 1.2rem;
         }
-         */
+        
         /* Map */
-        /* .map-container {
+        .map-container {
             height: 400px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
             border: 1px solid rgba(255,255,255,0.1);
         }
-         */
         /* Buttons */
-          /* .btn-gradient {
+          .btn-gradient {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
             color: white;
@@ -927,7 +926,7 @@
         .btn-gradient:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(52, 152, 219, 0.6);
-        }  */
+        } 
 
 /* AI Chatbot css */
          .containerai {
