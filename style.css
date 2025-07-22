@@ -849,7 +849,7 @@
         }
         
         /* Contact Form */
-        .contact-form-container {
+        /* .contact-form-container {
             background: rgba(255,255,255,0.05);
             border-radius: 20px;
             padding: 40px;
@@ -879,9 +879,9 @@
             height: 150px;
             border-radius: 20px;
         }
-        
+         */
         /* Contact Info */
-        .contact-info-card {
+        /* .contact-info-card {
             background: rgba(255,255,255,0.05);
             border-radius: 20px;
             padding: 30px;
@@ -902,7 +902,7 @@
             color: var(--gold);
             font-size: 1.2rem;
         }
-        
+         */
         /* Map */
         .map-container {
             height: 400px;
