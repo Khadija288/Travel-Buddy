@@ -102,7 +102,7 @@
         .btn-gradient:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(52, 152, 219, 0.6);
-        } */
+        }
 
         /* HOME PAGE CSS */
           /* Hero Section */
@@ -913,7 +913,7 @@
         }
          */
         /* Buttons */
-          .btn-gradient {
+          /* .btn-gradient {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
             color: white;
