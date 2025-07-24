@@ -721,7 +721,8 @@
         } */
         
         /* Footer */
-         footer {
+        
+         /* footer {
             background: var(--dark);
             padding: 70px 0 0;
             position: relative;
@@ -836,7 +837,7 @@
         }
          .links:hover::after{
             width: 100%;
-         } */
+         }  */
     /* CONTACT PAGE CSS */
       
         /* Header */
