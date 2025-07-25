@@ -41,7 +41,7 @@
                 <div class="col-lg-8">
                     <div class="hero-content">
                         <h1 class="hero-title">Discover The World With <span class="text-warning">Travel Buddy</span></h1>
-                        <p class="hero-subtitle">Your perfect travel companion for unforgettable adventures around the globe. Let us help you create <span class="typewriter">memories that last a lifetime.</span></p>
+                        <p class="hero-subtitle">Your perfect travel companion for unforgettable adventures around the globe. Let us help you create memories that last a lifetime.</p>
                         <div class="hero-buttons">
                             <button class="btn btn-gradient btn-lg me-3">Explore Destinations</button>
                             <button class="btn btn-outline-light btn-lg">Watch Video</button>
@@ -458,21 +458,6 @@
             // Initialize animations
             window.addEventListener('scroll', animateOnScroll);
             window.addEventListener('load', animateOnScroll);
-            
-            // Typewriter effect
-            const typewriterText = document.querySelector('.typewriter');
-            const text = "memories that last a lifetime.";
-            let index = 0;
-            
-            function typeWriter() {
-                if (index < text.length) {
-                    typewriterText.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, 100);
-                }
-            }
-            
-            setTimeout(typeWriter, 1500);
             
             // Add animated-element class to all sections
             const sections = document.querySelectorAll('.feature-card, .destination-card, .gallery-item, .testimonial-card');
