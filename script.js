@@ -204,3 +204,33 @@
             filterDestinations();
         });
 //travel Trip page css
+// Initialize Bootstrap components
+        const accordionItems = document.querySelectorAll('.accordion-button');
+        accordionItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (this.classList.contains('collapsed')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+        
+        // Add animation to tip items when they come into view
+        const tipItems = document.querySelectorAll('.tip-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateX(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        tipItems.forEach(item => {
+            item.style.opacity = "0";
+            item.style.transform = "translateX(-20px)";
+            item.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            observer.observe(item);
+        });
