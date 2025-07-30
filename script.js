@@ -429,4 +429,4 @@
             itineraryResult.style.display = 'none';
             document.getElementById('tripForm').scrollIntoView({ behavior: 'smooth' });
         });
-    
+    // Ai Page JS
