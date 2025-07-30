@@ -203,3 +203,4 @@
             // Initialize filter
             filterDestinations();
         });
+//travel Trip page css
