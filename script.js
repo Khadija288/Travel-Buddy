@@ -53,3 +53,4 @@
                 section.classList.add('animated-element');
             });
         });
+        
