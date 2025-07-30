@@ -53,4 +53,4 @@
                 section.classList.add('animated-element');
             });
         });
-        
+        //Destination Page JS
