@@ -159,7 +159,156 @@
         </div>
     </footer>
     <script src="script.js">
+         const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
         
+        // Scroll to bottom of chat
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Handle Enter key press
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        // Send message from quick actions
+        function sendQuickMessage(message) {
+            userInput.value = message;
+            sendMessage();
+        }
+        
+        // Send user message
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+            
+            // Add user message to chat
+            addMessage(message, 'user');
+            userInput.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Simulate AI response after delay
+            setTimeout(() => {
+                removeTypingIndicator();
+                const response = generateResponse(message);
+                addMessage(response, 'bot');
+            }, 1500);
+        }
+        
+        // Add message to chat
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.innerHTML = text;
+            chatMessages.appendChild(messageElement);
+            scrollToBottom();
+        }
+        
+        // Show typing indicator
+        function showTypingIndicator() {
+            const typingElement = document.createElement('div');
+            typingElement.classList.add('typing-indicator');
+            typingElement.id = 'typing-indicator';
+            typingElement.innerHTML = `
+                <span></span>
+                <span></span>
+                <span></span>
+            `;
+            chatMessages.appendChild(typingElement);
+            scrollToBottom();
+        }
+        
+        // Remove typing indicator
+        function removeTypingIndicator() {
+            const typingElement = document.getElementById('typing-indicator');
+            if (typingElement) {
+                typingElement.remove();
+            }
+        }
+        
+        // Generate AI response
+        function generateResponse(message) {
+            message = message.toLowerCase();
+            
+            // Sample responses based on keywords
+            if (message.includes('flight') || message.includes('fly')) {
+                return `✈️ For flight bookings, I can help you find the best deals! Based on your preferences, I recommend:<br><br>
+                <strong>Popular flight search options:</strong><br>
+                - Skyscanner for comprehensive comparisons<br>
+                - Google Flights for flexible date options<br>
+                - Kayak for package deals<br><br>
+                Would you like me to search for flights to a specific destination?`;
+            }
+            else if (message.includes('hotel') || message.includes('accommodation') || message.includes('stay')) {
+                return `🏨 Finding the perfect accommodation is key to a great trip! Here are some options:<br><br>
+                <strong>Top hotel booking platforms:</strong><br>
+                - Booking.com for extensive selection<br>
+                - Airbnb for unique stays<br>
+                - Agoda for Asian destinations<br><br>
+                Tell me your destination and travel dates for personalized recommendations!`;
+            }
+            else if (message.includes('itinerary') || message.includes('plan') || message.includes('schedule')) {
+                return `🗺️ I'd love to help plan your itinerary! Here's a sample 5-day Bali itinerary:<br><br>
+                <strong>Day 1:</strong> Ubud - Sacred Monkey Forest & Traditional Market<br>
+                <strong>Day 2:</strong> Tegallalang Rice Terraces & Cooking Class<br>
+                <strong>Day 3:</strong> Uluwatu Temple & Kecak Dance Performance<br>
+                <strong>Day 4:</strong> Nusa Penida Day Trip<br>
+                <strong>Day 5:</strong> Relax at Seminyak Beach<br><br>
+                Would you like me to customize this for your travel dates and preferences?`;
+            }
+            else if (message.includes('paris')) {
+                return `🇫🇷 Paris is always a great idea! Here are some must-see attractions:<br><br>
+                <strong>Top attractions:</strong><br>
+                - Eiffel Tower (book tickets in advance)<br>
+                - Louvre Museum (allow at least 4 hours)<br>
+                - Notre-Dame Cathedral (currently under renovation)<br>
+                - Montmartre and Sacré-Cœur<br><br>
+                <strong>Local tip:</strong> Take a Seine River cruise at sunset for magical views!`;
+            }
+            else if (message.includes('japan')) {
+                return `🗾 Japan offers incredible cultural experiences! For solo travelers:<br><br>
+                <strong>Recommendations:</strong><br>
+                - Stay in capsule hotels for budget-friendly solo accommodation<br>
+                - Get a JR Pass for unlimited train travel<br>
+                - Try local convenience stores (konbini) for affordable meals<br>
+                - Learn basic Japanese phrases<br><br>
+                <strong>Must-visit:</strong> Tokyo's Shibuya Crossing, Kyoto's temples, and Osaka's street food!`;
+            }
+            else if (message.includes('thailand')) {
+                return `🇹🇭 The best time to visit Thailand is between November and February when the weather is cooler and drier. Here's what to expect:<br><br>
+                <strong>Regional breakdown:</strong><br>
+                - North (Chiang Mai): Cool season is ideal<br>
+                - Central (Bangkok): November-February avoids heavy rains<br>
+                - South (Phuket): December-March for best beach weather<br><br>
+                <strong>Tip:</strong> Avoid April if you're sensitive to heat - this is the hottest month!`;
+            }
+            else if (message.includes('mexico')) {
+                return `🇲🇽 Mexico has fantastic family resorts! Top recommendations:<br><br>
+                <strong>Family-friendly resorts:</strong><br>
+                - Grand Velas Riviera Maya (Luxury, all-inclusive)<br>
+                - Moon Palace Cancun (Great kids' activities)<br>
+                - Hard Rock Hotel Riviera Maya (Teen-friendly)<br>
+                - Barceló Maya Grand Resort (Massive complex with water parks)<br><br>
+                <strong>Safety tip:</strong> Stick to resort areas and use official transportation for family travel.`;
+            }
+            else {
+                return `🌍 Thanks for your question! As your personal travel assistant, I can help with:<br><br>
+                - Destination recommendations based on your interests<br>
+                - Booking flights, hotels, and activities<br>
+                - Creating customized itineraries<br>
+                - Providing travel tips and local insights<br>
+                - Checking travel restrictions and requirements<br><br>
+                How can I assist with your travel plans today?`;
+            }
+        }
+        
+        // Initial scroll to bottom
+        window.onload = scrollToBottom;
     </script>
 </body>
 </html>
