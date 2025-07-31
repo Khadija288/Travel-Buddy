@@ -34,7 +34,82 @@
             </div>
         </div>
     </nav>
-   
+    <div class="container">
+        <div class="sidebar">
+            <div class="brand">
+                <i class="fas fa-route"></i>
+                <h1>TravelBuddy AI</h1>
+            </div>
+            
+            <div class="travel-tips">
+                <h3><i class="fas fa-lightbulb"></i> Travel Tips</h3>
+                <ul>
+                    <li>Check visa requirements early</li>
+                    <li>Pack light and use packing cubes</li>
+                    <li>Keep digital copies of documents</li>
+                    <li>Learn basic local phrases</li>
+                    <li>Always have local currency</li>
+                </ul>
+            </div>
+            
+            <div class="quick-actions">
+                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                <button class="action-btn" onclick="sendQuickMessage('Find me budget flights to Europe')">
+                    <i class="fas fa-plane"></i> Find Flights
+                </button>
+                <button class="action-btn" onclick="sendQuickMessage('Recommend hotels in Tokyo')">
+                    <i class="fas fa-hotel"></i> Hotel Search
+                </button>
+                <button class="action-btn" onclick="sendQuickMessage('Plan a 7-day itinerary for Bali')">
+                    <i class="fas fa-map-marked-alt"></i> Create Itinerary
+                </button>
+                <button class="action-btn" onclick="sendQuickMessage('What are the current travel restrictions for France?')">
+                    <i class="fas fa-passport"></i> Travel Restrictions
+                </button>
+                <button class="action-btn" onclick="sendQuickMessage('Suggest local experiences in Rome')">
+                    <i class="fas fa-utensils"></i> Local Experiences
+                </button>
+            </div>
+        </div>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="agent-info">
+                    <h2>Travel Assistant</h2>
+                    <p>AI-powered travel expert • Online</p>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot">
+                    <strong>👋 Hello! I'm your TravelBuddy AI assistant.</strong><br><br>
+                    How can I help you plan your next adventure? I can help with:<br>
+                    ✈️ Flight bookings<br>
+                    🏨 Hotel recommendations<br>
+                    🗺️ Itinerary planning<br>
+                    🌍 Destination insights<br>
+                    📝 Travel documentation
+                </div>
+            </div>
+            
+            <div class="suggestions">
+                <div class="suggestion" onclick="sendQuickMessage('Find flights from New York to Paris')">Flights to Paris</div>
+                <div class="suggestion" onclick="sendQuickMessage('Best time to visit Thailand')">Thailand Visit</div>
+                <div class="suggestion" onclick="sendQuickMessage('Recommend family resorts in Mexico')">Mexico Resorts</div>
+                <div class="suggestion" onclick="sendQuickMessage('Solo travel tips for Japan')">Japan Solo Travel</div>
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Ask about travel destinations, bookings, or itineraries..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
   <footer class="footer">
         <div class="container">
             <div class="row">
