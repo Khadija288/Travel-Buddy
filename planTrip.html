@@ -7,8 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
+         :root {
             --primary: #3498db;
             --secondary: #2ecc71;
             --accent: #e74c3c;
@@ -45,12 +46,6 @@
             padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             z-index: 1000;
-            transition: var(--transition);
-        }
-        
-        .navbar.scrolled {
-            padding: 10px 0;
-            background: rgba(16, 20, 30, 0.95);
         }
         
         .navbar-brand {
@@ -65,11 +60,12 @@
         }
         
         .navbar-brand i {
+            margin-left: 0%;
             margin-right: 10px;
             font-size: 1.8rem;
         }
         
-        .nav-link {
+         .nav-link {
             color: rgba(255, 255, 255, 0.9) !important;
             font-weight: 500;
             margin: 0;
@@ -105,7 +101,7 @@
             border: none;
             color: white;
             font-weight: 600;
-            padding: 8px 20px;
+            padding: 6px 12px;
             border-radius: 50px;
             position: relative;
             overflow: hidden;
@@ -117,18 +113,6 @@
         .btn-gradient:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(52, 152, 219, 0.6);
-        }
-
-        .btn-outline-light {
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: transparent;
-            color: white;
-            transition: var(--transition);
-        }
-        
-        .btn-outline-light:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
         }
         
         /* Hero Section for Planning */
@@ -180,6 +164,66 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+        }
+        
+        /* Destination Preview */
+        .destination-preview {
+            position: relative;
+            padding: 40px 0;
+            overflow: hidden;
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(16, 20, 30, 0.7), rgba(16, 20, 30, 0.9));
+            z-index: 1;
+        }
+        
+        .destination-markers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .destination-marker {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 5px rgba(231, 76, 60, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .destination-marker:hover {
+            transform: scale(1.3);
+        }
+        
+        .destination-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 3;
+            text-align: left;
+            max-width: 500px;
         }
         
         /* Trip Planner Section */
@@ -724,47 +768,6 @@
             font-size: 0.9rem;
         }
         
-        /* Footer */
-        .footer {
-            padding: 80px 0 30px;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .footer-title {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--gold);
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            margin-right: 10px;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-        
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -849,18 +852,6 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .itinerary-details {
-                flex-direction: column;
-            }
-            
-            .activity {
-                flex-direction: column;
-            }
-            
-            .activity-time {
-                margin-bottom: 10px;
-            }
         }
         
         @media (max-width: 576px) {
@@ -879,8 +870,14 @@
     </style>
 </head>
 <body>
+    <!-- Background floating elements -->
+    <div class="floating floating-1"><i class="fas fa-umbrella-beach"></i></div>
+    <div class="floating floating-2"><i class="fas fa-mountain"></i></div>
+    <div class="floating floating-3"><i class="fas fa-ship"></i></div>
+    <div class="floating floating-4"><i class="fas fa-map-marked-alt"></i></div>
+    
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+   <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-compass"></i>TravelBuddy</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -888,13 +885,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Destinations</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Plan Trip</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Travel Tips</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinision.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="planTrip.html">PlanTrip</a></li>
+                    <li class="nav-item"><a class="nav-link" href="TravelTip.html">TravelTips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AIchatbot.html">AI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
                 </ul>
-                <button class="btn btn-gradient ms-3">Book Now</button>
+                <button class="btn btn-gradient ms-1">BookNow</button>
             </div>
         </div>
     </nav>
@@ -906,11 +907,10 @@
             <div class="hero-content">
                 <h1 class="hero-title">Plan Your Perfect Trip</h1>
                 <p class="hero-subtitle">Let Travel Buddy craft your dream vacation with our intelligent trip planner. Answer a few questions and we'll create a personalized itinerary just for you.</p>
-                <button id="startPlanningBtn" class="btn btn-gradient btn-lg mt-3">Start Planning</button>
+                <button class="btn btn-gradient btn-lg mt-3">Start Planning</button>
             </div>
         </div>
     </section>
-
     <!-- Trip Planner Section -->
     <section class="trip-planner">
         <div class="container">
@@ -1139,18 +1139,103 @@
                     <h3 class="section-title">Day-by-Day Plan</h3>
                     
                     <div id="dayPlans">
-                        <!-- Dynamic content will be inserted here -->
+                        <div class="day-plan">
+                            <h3 class="day-title"><i class="fas fa-calendar-day"></i> Day 1: Arrival in Bali</h3>
+                            <div class="activity">
+                                <div class="activity-time">2:00 PM</div>
+                                <div class="activity-image">
+                                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                                </div>
+                                <div class="activity-content">
+                                    <h4 class="activity-title">Airport Transfer & Check-in</h4>
+                                    <p class="activity-desc">Meet your driver at the airport and transfer to your luxury beach resort. Settle in and enjoy welcome drinks.</p>
+                                </div>
+                            </div>
+                            <div class="activity">
+                                <div class="activity-time">7:00 PM</div>
+                                <div class="activity-image">
+                                    <img src="https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                                </div>
+                                <div class="activity-content">
+                                    <h4 class="activity-title">Welcome Dinner</h4>
+                                    <p class="activity-desc">Enjoy a traditional Balinese dinner with cultural performance at a cliffside restaurant overlooking the ocean.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="day-plan">
+                            <h3 class="day-title"><i class="fas fa-calendar-day"></i> Day 2: Beach & Culture</h3>
+                            <div class="activity">
+                                <div class="activity-time">9:00 AM</div>
+                                <div class="activity-image">
+                                    <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80">
+                                </div>
+                                <div class="activity-content">
+                                    <h4 class="activity-title">Surfing Lesson</h4>
+                                    <p class="activity-desc">Learn to surf with expert instructors at Bali's famous Kuta Beach. All equipment provided.</p>
+                                </div>
+                            </div>
+                            <div class="activity">
+                                <div class="activity-time">2:00 PM</div>
+                                <div class="activity-image">
+                                    <img src="https://images.unsplash.com/photo-1564420170826-5f7e7652e56f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                                </div>
+                                <div class="activity-content">
+                                    <h4 class="activity-title">Ubud Temple Tour</h4>
+                                    <p class="activity-desc">Visit the sacred Monkey Forest and ancient temples with a local guide explaining Balinese Hinduism.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <h3 class="section-title">Recommended For You</h3>
                     
-                    <div class="recommendations" id="recommendations">
-                        <!-- Dynamic recommendations will be inserted here -->
+                    <div class="recommendations">
+                        <div class="rec-card">
+                            <div class="rec-image">
+                                <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80">
+                            </div>
+                            <div class="rec-content">
+                                <h4 class="rec-title">Luxury Beach Resort</h4>
+                                <p>Experience ultimate relaxation with our premium beachfront accommodation package.</p>
+                                <div class="rec-meta">
+                                    <span><i class="fas fa-tag"></i> $299/night</span>
+                                    <span><i class="fas fa-star"></i> 4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="rec-card">
+                            <div class="rec-image">
+                                <img src="https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                            </div>
+                            <div class="rec-content">
+                                <h4 class="rec-title">Gourmet Food Tour</h4>
+                                <p>Taste the best local cuisine with our expert-guided food experience.</p>
+                                <div class="rec-meta">
+                                    <span><i class="fas fa-tag"></i> $89/person</span>
+                                    <span><i class="fas fa-star"></i> 5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="rec-card">
+                            <div class="rec-image">
+                                <img src="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80">
+                            </div>
+                            <div class="rec-content">
+                                <h4 class="rec-title">Adventure Package</h4>
+                                <p>Three thrilling activities including rafting, hiking and zip-lining.</p>
+                                <div class="rec-meta">
+                                    <span><i class="fas fa-tag"></i> $199/person</span>
+                                    <span><i class="fas fa-star"></i> 4.8</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="text-center mt-4">
-                    <button class="btn btn-gradient me-3" id="downloadBtn"><i class="fas fa-download me-2"></i> Download Itinerary</button>
+                    <button class="btn btn-gradient me-3"><i class="fas fa-download me-2"></i> Download Itinerary</button>
                     <button class="btn btn-outline-light" id="editPlan"><i class="fas fa-edit me-2"></i> Edit Plan</button>
                 </div>
             </div>
@@ -1158,7 +1243,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+     <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -1168,16 +1253,18 @@
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
+                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="col-md-2 mb-4">
                     <h4 class="footer-title">Explore</h4>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Plan Trips</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Travel Tips</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Gallery</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">About</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Plan Trips</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Travel Tips</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">AI Chatbot</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Gallery</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">About</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3 mb-4">
@@ -1186,9 +1273,10 @@
                         <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Travel Street, NewYork</li>
                         <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
                         <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@travelbuddy.com</li>
+                         <li class="mb-2"><i class="fas fa-clock me-2"></i>Mon-Fri: 9AM - 6PM</li>
                     </ul>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class="col-lg-3 mb-4 ml-5">
                     <h4 class="footer-title">Newsletter</h4>
                     <p>Subscribe to our newsletter for travel updates and exclusive offers.</p>
                     <div class="input-group mb-3">
@@ -1204,208 +1292,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Destination data for itinerary generation
-        const destinationData = {
-            "bali": {
-                name: "Bali, Indonesia",
-                description: "Tropical paradise with stunning beaches and vibrant culture",
-                activities: {
-                    "adventure": ["White Water Rafting", "Mount Batur Sunrise Trek", "ATV Adventure"],
-                    "relaxation": ["Spa Retreat", "Beach Yoga", "Meditation Session"],
-                    "culture": ["Traditional Dance Show", "Temple Tour", "Balinese Cooking Class"],
-                    "food": ["Local Food Market Tour", "Seafood Dinner", "Coffee Tasting"],
-                    "shopping": ["Ubud Art Market", "Seminyak Boutiques", "Silver Jewelry Workshop"],
-                    "nature": ["Rice Terrace Walk", "Waterfall Exploration", "Monkey Forest Visit"]
-                },
-                recommendations: [
-                    {
-                        title: "Luxury Beach Resort",
-                        description: "Experience ultimate relaxation with our premium beachfront accommodation package.",
-                        price: "$299/night",
-                        rating: "4.9",
-                        image: "https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-                    },
-                    {
-                        title: "Gourmet Food Tour",
-                        description: "Taste the best local cuisine with our expert-guided food experience.",
-                        price: "$89/person",
-                        rating: "5.0",
-                        image: "https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    }
-                ]
-            },
-            "paris": {
-                name: "Paris, France",
-                description: "Romantic city of lights, art, and culinary delights",
-                activities: {
-                    "adventure": ["Seine River Kayaking", "Catacombs Exploration", "Montmartre Steps Climb"],
-                    "relaxation": ["Luxury Spa Day", "Picnic at Luxembourg Gardens", "Boat Cruise"],
-                    "culture": ["Louvre Museum Tour", "Notre Dame Visit", "Opera Garnier Show"],
-                    "food": ["Patisserie Tour", "Wine Tasting", "Cheese Workshop"],
-                    "shopping": ["Champs-Élysées", "Le Marais Boutiques", "Antique Markets"],
-                    "nature": ["Versailles Gardens", "Bois de Boulogne", "Botanical Gardens"]
-                },
-                recommendations: [
-                    {
-                        title: "Eiffel Tower Experience",
-                        description: "Skip-the-line access and guided tour of the iconic Eiffel Tower.",
-                        price: "$59/person",
-                        rating: "4.8",
-                        image: "https://images.unsplash.com/photo-1543349689-9a4d426bee8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1101&q=80"
-                    },
-                    {
-                        title: "Parisian Cooking Class",
-                        description: "Learn to make classic French dishes with a professional chef.",
-                        price: "$120/person",
-                        rating: "4.9",
-                        image: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    }
-                ]
-            },
-            "kyoto": {
-                name: "Kyoto, Japan",
-                description: "Ancient capital with temples, gardens, and traditional culture",
-                activities: {
-                    "adventure": ["Bamboo Forest Hike", "Cycling Tour", "Archery Experience"],
-                    "relaxation": ["Onsen Experience", "Tea Ceremony", "Zen Garden Meditation"],
-                    "culture": ["Geisha District Tour", "Samurai Museum", "Kimono Wearing"],
-                    "food": ["Sushi Making Class", "Ramen Tasting", "Market Food Tour"],
-                    "shopping": ["Nishiki Market", "Pottery District", "Traditional Crafts"],
-                    "nature": ["Fushimi Inari Shrines", "Cherry Blossom Viewing", "Monkey Park"]
-                },
-                recommendations: [
-                    {
-                        title: "Traditional Ryokan Stay",
-                        description: "Authentic Japanese inn experience with kaiseki dinner.",
-                        price: "$350/night",
-                        rating: "4.9",
-                        image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    },
-                    {
-                        title: "Cherry Blossom Tour",
-                        description: "Guided tour of Kyoto's best cherry blossom viewing spots.",
-                        price: "$75/person",
-                        rating: "5.0",
-                        image: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    }
-                ]
-            },
-            "santorini": {
-                name: "Santorini, Greece",
-                description: "Stunning volcanic island with white-washed buildings and blue domes",
-                activities: {
-                    "adventure": ["Volcano Hike", "Sailing Tour", "Kayaking"],
-                    "relaxation": ["Caldera View Spa", "Sunset Cruise", "Beach Day"],
-                    "culture": ["Ancient Akrotiri", "Wine Museum", "Traditional Village Tour"],
-                    "food": ["Greek Cooking Class", "Seafood Feast", "Wine Tasting"],
-                    "shopping": ["Oia Boutiques", "Local Art Galleries", "Handmade Crafts"],
-                    "nature": ["Red Beach", "Hot Springs", "Hiking Trails"]
-                },
-                recommendations: [
-                    {
-                        title: "Caldera View Villa",
-                        description: "Private villa with infinity pool overlooking the caldera.",
-                        price: "$450/night",
-                        rating: "4.9",
-                        image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1338&q=80"
-                    },
-                    {
-                        title: "Sunset Catamaran Cruise",
-                        description: "Evening sailing with dinner and views of the famous Santorini sunset.",
-                        price: "$110/person",
-                        rating: "4.9",
-                        image: "https://images.unsplash.com/photo-1593118247619-e2d6f056869e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    }
-                ]
-            },
-            "newyork": {
-                name: "New York, USA",
-                description: "The city that never sleeps - iconic skyline and endless energy",
-                activities: {
-                    "adventure": ["Helicopter Tour", "Broadway Backstage", "High Line Walk"],
-                    "relaxation": ["Central Park Picnic", "Spa Day", "Rooftop Lounge"],
-                    "culture": ["Museum of Modern Art", "Statue of Liberty", "Metropolitan Museum"],
-                    "food": ["Pizza Tour", "Bagel Breakfast", "Food Truck Crawl"],
-                    "shopping": ["Fifth Avenue", "Soho Boutiques", "Brooklyn Flea Market"],
-                    "nature": ["Central Park Exploration", "Brooklyn Botanic Garden", "Hudson River Park"]
-                },
-                recommendations: [
-                    {
-                        title: "Broadway Show Package",
-                        description: "Premium tickets to a Broadway show with dinner included.",
-                        price: "$199/person",
-                        rating: "4.8",
-                        image: "https://images.unsplash.com/photo-1543423924-b9f161af8755?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    },
-                    {
-                        title: "Statue of Liberty & Ellis Island",
-                        description: "Guided tour with priority access and historical insights.",
-                        price: "$49/person",
-                        rating: "4.7",
-                        image: "https://images.unsplash.com/photo-1508050919630-b135583b29ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-                    }
-                ]
-            },
-            "swiss": {
-                name: "Swiss Alps",
-                description: "Majestic mountains, charming villages, and outdoor adventures",
-                activities: {
-                    "adventure": ["Skiing", "Mountain Biking", "Paragliding"],
-                    "relaxation": ["Alpine Spa", "Scenic Train Ride", "Lakeside Picnic"],
-                    "culture": ["Cheese Factory Tour", "Traditional Folk Show", "Historic Village Walk"],
-                    "food": ["Chocolate Tasting", "Fondue Dinner", "Alpine Breakfast"],
-                    "shopping": ["Local Craft Markets", "Watch Boutiques", "Souvenir Shops"],
-                    "nature": ["Glacier Hike", "Waterfall Visit", "Wildflower Meadows"]
-                },
-                recommendations: [
-                    {
-                        title: "Mountain Lodge Experience",
-                        description: "Cozy alpine lodge with stunning mountain views.",
-                        price: "$320/night",
-                        rating: "4.9",
-                        image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    },
-                    {
-                        title: "Glacier Express Train",
-                        description: "First-class panoramic train journey through the Alps.",
-                        price: "$220/person",
-                        rating: "5.0",
-                        image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
-                    }
-                ]
-            },
-            "barcelona": {
-                name: "Barcelona, Spain",
-                description: "Vibrant city with unique architecture and Mediterranean charm",
-                activities: {
-                    "adventure": ["Bike Tour", "Water Sports", "Montjuïc Cable Car"],
-                    "relaxation": ["Beach Day", "Tapas Crawl", "Rooftop Bar"],
-                    "culture": ["Sagrada Familia Tour", "Gothic Quarter Walk", "Flamenco Show"],
-                    "food": ["Paella Cooking Class", "Tapas Tasting", "Market Visit"],
-                    "shopping": ["La Rambla", "Designer Boutiques", "Local Markets"],
-                    "nature": ["Park Güell", "Montjuïc Gardens", "Barceloneta Beach"]
-                },
-                recommendations: [
-                    {
-                        title: "Sagrada Familia Guided Tour",
-                        description: "Skip-the-line access with expert guide to Gaudi's masterpiece.",
-                        price: "$45/person",
-                        rating: "4.9",
-                        image: "https://images.unsplash.com/photo-1583422409516-2895a77efded?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    },
-                    {
-                        title: "Gaudi Architecture Tour",
-                        description: "Full-day tour of Gaudi's iconic buildings across Barcelona.",
-                        price: "$85/person",
-                        rating: "4.8",
-                        image: "https://images.unsplash.com/photo-1562886900-8bdcb8b1e4a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                    }
-                ]
-            }
-        };
-
-        // Navbar scroll effect
+    <script> // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -1471,112 +1358,47 @@
         const tripBudget = document.getElementById('tripBudget');
         const travelersCount = document.getElementById('travelersCount');
         const dayPlans = document.getElementById('dayPlans');
-        const recommendations = document.getElementById('recommendations');
         const editPlanBtn = document.getElementById('editPlan');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const startPlanningBtn = document.getElementById('startPlanningBtn');
         
-        // Scroll to form when Start Planning button is clicked
-        startPlanningBtn.addEventListener('click', function() {
-            document.querySelector('.planner-container').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        // Get a random activity for a specific interest and destination
-        function getRandomActivity(destination, interest) {
-            const activities = destinationData[destination].activities[interest];
-            return activities[Math.floor(Math.random() * activities.length)];
-        }
-        
-        // Generate day plan for a specific day
-        function generateDayPlan(day, destination, interests) {
-            // Day structure with different times
-            const dayStructure = [
-                { time: "9:00 AM", type: "morning" },
-                { time: "1:00 PM", type: "afternoon" },
-                { time: "4:00 PM", type: "afternoon" },
-                { time: "7:00 PM", type: "evening" }
-            ];
-            
-            // Special activities for day 1 and last day
-            if (day === 1) {
-                return `
-                    <div class="day-plan">
-                        <h3 class="day-title"><i class="fas fa-calendar-day"></i> Day ${day}: Arrival</h3>
-                        <div class="activity">
-                            <div class="activity-time">2:00 PM</div>
-                            <div class="activity-image">
-                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
-                            </div>
-                            <div class="activity-content">
-                                <h4 class="activity-title">Airport Transfer & Check-in</h4>
-                                <p class="activity-desc">Meet your driver and transfer to your accommodation. Settle in and get ready for your adventure.</p>
-                            </div>
-                        </div>
-                        <div class="activity">
-                            <div class="activity-time">7:00 PM</div>
-                            <div class="activity-image">
-                                <img src="https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
-                            </div>
-                            <div class="activity-content">
-                                <h4 class="activity-title">Welcome Dinner</h4>
-                                <p class="activity-desc">Enjoy a traditional dinner to experience local cuisine and get oriented with your destination.</p>
-                            </div>
-                        </div>
-                    </div>
-                `;
+        // Destination data for itinerary generation
+        const destinationData = {
+            "bali": {
+                name: "Bali, Indonesia",
+                description: "Tropical paradise with stunning beaches and vibrant culture",
+                activities: {
+                    "adventure": ["White Water Rafting", "Mount Batur Sunrise Trek", "ATV Adventure"],
+                    "relaxation": ["Spa Retreat", "Beach Yoga", "Meditation Session"],
+                    "culture": ["Traditional Dance Show", "Temple Tour", "Balinese Cooking Class"],
+                    "food": ["Local Food Market Tour", "Seafood Dinner", "Coffee Tasting"],
+                    "shopping": ["Ubud Art Market", "Seminyak Boutiques", "Silver Jewelry Workshop"],
+                    "nature": ["Rice Terrace Walk", "Waterfall Exploration", "Monkey Forest Visit"]
+                }
+            },
+            "paris": {
+                name: "Paris, France",
+                description: "Romantic city of lights, art, and culinary delights",
+                activities: {
+                    "adventure": ["Seine River Kayaking", "Catacombs Exploration", "Montmartre Steps Climb"],
+                    "relaxation": ["Luxury Spa Day", "Picnic at Luxembourg Gardens", "Boat Cruise"],
+                    "culture": ["Louvre Museum Tour", "Notre Dame Visit", "Opera Garnier Show"],
+                    "food": ["Patisserie Tour", "Wine Tasting", "Cheese Workshop"],
+                    "shopping": ["Champs-Élysées", "Le Marais Boutiques", "Antique Markets"],
+                    "nature": ["Versailles Gardens", "Bois de Boulogne", "Botanical Gardens"]
+                }
+            },
+            "kyoto": {
+                name: "Kyoto, Japan",
+                description: "Ancient capital with temples, gardens, and traditional culture",
+                activities: {
+                    "adventure": ["Bamboo Forest Hike", "Cycling Tour", "Archery Experience"],
+                    "relaxation": ["Onsen Experience", "Tea Ceremony", "Zen Garden Meditation"],
+                    "culture": ["Geisha District Tour", "Samurai Museum", "Kimono Wearing"],
+                    "food": ["Sushi Making Class", "Ramen Tasting", "Market Food Tour"],
+                    "shopping": ["Nishiki Market", "Pottery District", "Traditional Crafts"],
+                    "nature": ["Fushimi Inari Shrines", "Cherry Blossom Viewing", "Monkey Park"]
+                }
             }
-            
-            let activitiesHTML = '';
-            
-            dayStructure.forEach((slot, index) => {
-                // Rotate through selected interests
-                const currentInterest = interests[index % interests.length];
-                const activity = getRandomActivity(destination, currentInterest);
-                
-                // Different image for each activity
-                const imageIndex = Math.floor(Math.random() * 6) + 1;
-                
-                activitiesHTML += `
-                    <div class="activity">
-                        <div class="activity-time">${slot.time}</div>
-                        <div class="activity-image">
-                            <img src="https://source.unsplash.com/random/600x400/?${destination},${currentInterest},${index}">
-                        </div>
-                        <div class="activity-content">
-                            <h4 class="activity-title">${activity}</h4>
-                            <p class="activity-desc">Experience ${destinationData[destination].name} through ${currentInterest} with this carefully selected activity.</p>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            return `
-                <div class="day-plan">
-                    <h3 class="day-title"><i class="fas fa-calendar-day"></i> Day ${day}: Exploration</h3>
-                    ${activitiesHTML}
-                </div>
-            `;
-        }
-        
-        // Generate recommendations HTML
-        function generateRecommendations(destination) {
-            const recs = destinationData[destination].recommendations;
-            return recs.map(rec => `
-                <div class="rec-card">
-                    <div class="rec-image">
-                        <img src="${rec.image}">
-                    </div>
-                    <div class="rec-content">
-                        <h4 class="rec-title">${rec.title}</h4>
-                        <p>${rec.description}</p>
-                        <div class="rec-meta">
-                            <span><i class="fas fa-tag"></i> ${rec.price}</span>
-                            <span><i class="fas fa-star"></i> ${rec.rating}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+        };
         
         tripForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1595,20 +1417,62 @@
             }
             
             // Update itinerary header
-            itineraryTitle.textContent = `${name}'s ${destinationData[destination].name} Adventure`;
-            destinationName.textContent = destinationData[destination].name;
+            itineraryTitle.textContent = `${name}'s ${destinationData[destination]?.name || "Dream"} Adventure`;
+            destinationName.textContent = destinationData[destination]?.name || "Selected Destination";
             tripDuration.textContent = `${days} Days`;
             tripBudget.textContent = `$${budget}`;
             travelersCount.textContent = `${travelers} Traveler${travelers > 1 ? 's' : ''}`;
             
             // Generate day plans
             dayPlans.innerHTML = '';
-            for (let day = 1; day <= days; day++) {
-                dayPlans.innerHTML += generateDayPlan(day, destination, selectedInterests);
+            for (let i = 1; i <= days; i++) {
+                const dayPlan = document.createElement('div');
+                dayPlan.className = 'day-plan';
+                dayPlan.innerHTML = `
+                    <h3 class="day-title"><i class="fas fa-calendar-day"></i> Day ${i}</h3>
+                    <div class="activity">
+                        <div class="activity-time">9:00 AM</div>
+                        <div class="activity-image">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                        </div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Morning Exploration</h4>
+                            <p class="activity-desc">Begin your day with a guided tour of the city's historic landmarks and hidden gems.</p>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activity-time">1:00 PM</div>
+                        <div class="activity-image">
+                            <img src="https://images.unsplash.com/photo-1517244683847-7456b63c5969?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                        </div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Local Cuisine Experience</h4>
+                            <p class="activity-desc">Enjoy authentic dishes at a highly-rated local restaurant with traditional ambiance.</p>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activity-time">4:00 PM</div>
+                        <div class="activity-image">
+                            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                        </div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Cultural Workshop</h4>
+                            <p class="activity-desc">Participate in a hands-on workshop to learn about local crafts and traditions.</p>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activity-time">7:00 PM</div>
+                        <div class="activity-image">
+                            <img src="https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                        </div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Evening Entertainment</h4>
+                            <p class="activity-desc">Experience the vibrant nightlife with a performance or scenic evening tour.</p>
+                        </div>
+                    </div>
+                `;
+                dayPlans.appendChild(dayPlan);
             }
-            
-            // Generate recommendations
-            recommendations.innerHTML = generateRecommendations(destination);
             
             // Show itinerary
             itineraryResult.style.display = 'block';
@@ -1622,12 +1486,6 @@
             itineraryResult.style.display = 'none';
             document.getElementById('tripForm').scrollIntoView({ behavior: 'smooth' });
         });
-        
-        // Download itinerary button
-        downloadBtn.addEventListener('click', function() {
-            alert("Your itinerary has been downloaded! Check your downloads folder.");
-            // In a real app, this would generate a PDF or other downloadable file
-        });
-    </script>
+</script>
 </body>
 </html>
