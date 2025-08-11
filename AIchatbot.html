@@ -345,82 +345,575 @@
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="sidebar">
-            <div class="brand">
-                <i class="fas fa-route"></i>
-                <h1>TravelBuddy AI</h1>
-            </div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy AI Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --dark: #0f172a;
+            --light: #f8f9fa;
+            --gold: #f1c40f;
+            --transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0b0f1a, #1a1f2d);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .chat-container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 85vh;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .chat-header {
+            background: rgba(16, 20, 30, 0.85);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .chat-header-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .chat-header-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: rgba(11, 15, 26, 0.4);
+        }
+        
+        .message {
+            max-width: 85%;
+            padding: 15px 20px;
+            border-radius: 18px;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+            line-height: 1.5;
+        }
+        
+        .bot-message {
+            background: rgba(52, 152, 219, 0.15);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+        
+        .user-message {
+            background: rgba(255, 255, 255, 0.1);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+            text-align: right;
+        }
+        
+        .chat-input-container {
+            padding: 20px;
+            background: rgba(16, 20, 30, 0.85);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chat-input-box {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        
+        .chat-input:focus {
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5);
+        }
+        
+        .send-button {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+        
+        .send-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .send-button:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .suggestion {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .suggestion:hover {
+            background: rgba(52, 152, 219, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 15px;
+            background: rgba(52, 152, 219, 0.15);
+            border-radius: 15px;
+            align-self: flex-start;
+            width: 140px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: typing 1.5s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .api-key-container {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .api-key-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .api-key-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        
+        .api-key-input button {
+            padding: 0 20px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(52, 152, 219, 0.3);
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .api-key-input button:hover {
+            background: rgba(52, 152, 219, 0.5);
+        }
+        
+        .key-note {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.4);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(241, 196, 15, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(241, 196, 15, 0);
+            }
+        }
+        
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .chat-container {
+                height: 90vh;
+            }
             
-            <div class="travel-tips">
-                <h3><i class="fas fa-lightbulb"></i> Travel Tips</h3>
-                <ul>
-                    <li>Check visa requirements early</li>
-                    <li>Pack light and use packing cubes</li>
-                    <li>Keep digital copies of documents</li>
-                    <li>Learn basic local phrases</li>
-                    <li>Always have local currency</li>
-                </ul>
-            </div>
+            .message {
+                max-width: 90%;
+            }
             
-            <div class="quick-actions">
-                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
-                <button class="action-btn" onclick="sendQuickMessage('Find me budget flights to Europe')">
-                    <i class="fas fa-plane"></i> Find Flights
-                </button>
-                <button class="action-btn" onclick="sendQuickMessage('Recommend hotels in Tokyo')">
-                    <i class="fas fa-hotel"></i> Hotel Search
-                </button>
-                <button class="action-btn" onclick="sendQuickMessage('Plan a 7-day itinerary for Bali')">
-                    <i class="fas fa-map-marked-alt"></i> Create Itinerary
-                </button>
-                <button class="action-btn" onclick="sendQuickMessage('What are the current travel restrictions for France?')">
-                    <i class="fas fa-passport"></i> Travel Restrictions
-                </button>
-                <button class="action-btn" onclick="sendQuickMessage('Suggest local experiences in Rome')">
-                    <i class="fas fa-utensils"></i> Local Experiences
-                </button>
+            .chat-input-box {
+                flex-direction: column;
+            }
+            
+            .send-button {
+                width: 100%;
+                height: 50px;
+                border-radius: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="avatar">
+                <i class="fas fa-compass"></i>
+            </div>
+            <div class="chat-header-info">
+                <h2>Travel Buddy AI Assistant</h2>
+                <p><span class="status-indicator"></span> Online - Ready to assist with your travel plans</p>
             </div>
         </div>
         
-        <div class="chat-container">
-            <div class="chat-header">
-                <div class="avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <div class="agent-info">
-                    <h2>Travel Assistant</h2>
-                    <p>AI-powered travel expert • Online</p>
-                </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <p>Hello! 👋 I'm your Travel Buddy AI assistant. How can I help you with your travel plans today?</p>
+                <div class="message-time">Just now</div>
             </div>
             
-            <div class="chat-messages" id="chat-messages">
-                <div class="message bot">
-                    <strong>👋 Hello! I'm your TravelBuddy AI assistant.</strong><br><br>
-                    How can I help you plan your next adventure? I can help with:<br>
-                    ✈️ Flight bookings<br>
-                    🏨 Hotel recommendations<br>
-                    🗺️ Itinerary planning<br>
-                    🌍 Destination insights<br>
-                    📝 Travel documentation
-                </div>
+            <div class="message bot-message">
+                <p>I can assist with:</p>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>Destination recommendations</li>
+                    <li>Packing lists for specific locations/seasons</li>
+                    <li>Travel itineraries and planning</li>
+                    <li>Budgeting and cost-saving tips</li>
+                    <li>Cultural insights and local etiquette</li>
+                </ul>
+                <div class="message-time">Just now</div>
             </div>
-            
-            <div class="suggestions">
-                <div class="suggestion" onclick="sendQuickMessage('Find flights from New York to Paris')">Flights to Paris</div>
-                <div class="suggestion" onclick="sendQuickMessage('Best time to visit Thailand')">Thailand Visit</div>
-                <div class="suggestion" onclick="sendQuickMessage('Recommend family resorts in Mexico')">Mexico Resorts</div>
-                <div class="suggestion" onclick="sendQuickMessage('Solo travel tips for Japan')">Japan Solo Travel</div>
-            </div>
-            
-            <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Ask about travel destinations, bookings, or itineraries..." onkeypress="handleKeyPress(event)">
-                <button onclick="sendMessage()">
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="chat-input-box">
+                <input type="text" class="chat-input" id="userInput" placeholder="Ask about travel destinations, packing lists, itineraries...">
+                <button class="send-button" id="sendButton">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
+            
+            <div class="suggestions">
+                <div class="suggestion" data-question="What to pack for Murree in December?">What to pack for Murree in December?</div>
+                <div class="suggestion" data-question="Suggest a 5-day itinerary for Bali">5-day Bali itinerary</div>
+                <div class="suggestion" data-question="Budget-friendly European destinations">Budget Europe destinations</div>
+                <div class="suggestion" data-question="Best time to visit Switzerland">Best time for Switzerland</div>
+            </div>
+            
+            <div class="api-key-container">
+                <p><i class="fas fa-key"></i> <strong>API Key Required</strong> - To enable real AI responses, add your OpenAI API key:</p>
+                <div class="api-key-input">
+                    <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API key">
+                    <button id="saveApiKey">Save Key</button>
+                </div>
+                <p class="key-note">Your key is stored locally and only used to communicate with OpenAI's API. Get your API key from <a href="https://platform.openai.com/account/api-keys" target="_blank" style="color: var(--primary);">OpenAI's website</a>.</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        // OpenAI API integration
+        const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+        
+        // DOM elements
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const suggestions = document.querySelectorAll('.suggestion');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+        const saveApiKeyButton = document.getElementById('saveApiKey');
+        
+        // Load saved API key
+        let apiKey = localStorage.getItem('travelBuddyApiKey');
+        if (apiKey) {
+            apiKeyInput.value = '••••••••••••••••';
+        }
+        
+        // Save API key
+        saveApiKeyButton.addEventListener('click', () => {
+            const key = apiKeyInput.value.trim();
+            if (key) {
+                apiKey = key;
+                localStorage.setItem('travelBuddyApiKey', key);
+                apiKeyInput.value = '••••••••••••••••';
+                addBotMessage("API key saved successfully! You can now chat with the AI assistant.");
+            } else {
+                addBotMessage("Please enter a valid OpenAI API key.");
+            }
+        });
+        
+        // Add message to chat
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            
+            const now = new Date();
+            const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+            
+            // Format links in the response
+            let formattedText = text;
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            formattedText = formattedText.replace(urlRegex, url => {
+                return `<a href="${url}" target="_blank" style="color: var(--primary);">${url}</a>`;
+            });
+            
+            messageDiv.innerHTML = `
+                <p>${formattedText}</p>
+                <div class="message-time">${timeString}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Add bot message
+        function addBotMessage(text) {
+            addMessage(text, false);
+        }
+        
+        // Show typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('typing-indicator');
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <span>Travel Buddy is typing...</span>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typingDiv;
+        }
+        
+        // Get AI response from OpenAI API
+        async function getAIResponse(userMessage) {
+            if (!apiKey) {
+                return "Please add your OpenAI API key to enable real responses. Get your API key from OpenAI's website and click 'Save Key' below.";
+            }
+            
+            const typingIndicator = showTypingIndicator();
+            sendButton.disabled = true;
+            
+            try {
+                const response = await fetch(OPENAI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",
+                        messages: [
+                            {
+                                role: "system",
+                                content: "You are a helpful travel assistant for Travel Buddy. Provide concise, helpful travel advice. Format your responses with clear paragraphs. When suggesting destinations, include brief reasons why they're recommended. For packing lists, use bullet points. For itineraries, break them down by days. Always aim for responses between 100-300 words."
+                            },
+                            {
+                                role: "user",
+                                content: userMessage
+                            }
+                        ],
+                        max_tokens: 500,
+                        temperature: 0.7
+                    })
+                });
+                
+                const data = await response.json();
+                typingIndicator.remove();
+                sendButton.disabled = false;
+                
+                if (data.choices && data.choices.length > 0) {
+                    return data.choices[0].message.content.trim();
+                } else {
+                    return "I couldn't process your request. Please try again.";
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                typingIndicator.remove();
+                sendButton.disabled = false;
+                return "Sorry, I encountered an error. Please check your API key and connection.";
+            }
+        }
+        
+        // Process user input
+        async function processInput() {
+            const question = userInput.value.trim();
+            if (!question) return;
+            
+            // Add user message
+            addMessage(question, true);
+            userInput.value = '';
+            
+            // Get AI response
+            const response = await getAIResponse(question);
+            addBotMessage(response);
+        }
+        
+        // Event listeners
+        sendButton.addEventListener('click', processInput);
+        
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processInput();
+            }
+        });
+        
+        // Suggestions
+        suggestions.forEach(suggestion => {
+            suggestion.addEventListener('click', function() {
+                userInput.value = this.getAttribute('data-question');
+                processInput();
+            });
+        });
+    </script>
+</body>
+
   <footer class="footer">
         <div class="container">
             <div class="row">
