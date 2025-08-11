@@ -236,104 +236,160 @@
         });
 // Plan trip Js
     // Ai Page JS
-    document.addEventListener('DOMContentLoaded', function() {
-            const chatMessages = document.querySelector('.chat-messages');
-            const userInput = document.getElementById('userInput');
-            const sendButton = document.getElementById('sendButton');
-            const suggestions = document.querySelectorAll('.suggestion');
-            
-            // Predefined responses
-            const responses = {
-                "What to pack for Murree in December?": "For Murree in December, pack warm clothing including heavy jackets, gloves, scarves, and thermal wear. Temperatures often drop below freezing. Waterproof boots are essential for snowy conditions. Don't forget moisturizer and lip balm to protect against cold winds.",
-                "Best beaches in Thailand": "Thailand has incredible beaches! Top recommendations: 1. Railay Beach (Krabi) - stunning limestone cliffs, 2. White Sand Beach (Koh Chang) - perfect for families, 3. Maya Bay (Koh Phi Phi) - famous from 'The Beach', 4. Freedom Beach (Phuket) - secluded paradise, 5. Sunrise Beach (Koh Lipe) - amazing snorkeling.",
-                "Affordable European destinations": "Great budget-friendly European destinations: 1. Portugal (Lisbon & Porto) - amazing food and architecture, 2. Poland (Krakow & Warsaw) - rich history and culture, 3. Hungary (Budapest) - beautiful thermal baths, 4. Greece (Athens & islands) - outside of peak season, 5. Romania - medieval towns and castles.",
-                "How to get a visa for Japan?": "For most tourists, Japan offers visa-free entry for stays up to 90 days for citizens of 68 countries including the US, UK, Canada, and Australia. If you need a visa, apply at your nearest Japanese embassy with: 1. Completed application form, 2. Passport valid 6+ months, 3. Passport photo, 4. Proof of itinerary, 5. Bank statements showing sufficient funds. Processing usually takes 5-7 business days.",
-                "default": "I'm your Travel Buddy AI assistant. I can help with destination information, packing lists, itinerary planning, budget tips, and travel advice. Try asking about a specific destination or travel need!"
-            };
-            
-            // Add message to chat
-            function addMessage(text, isUser = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message');
-                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
-                
-                const now = new Date();
-                const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-                
-                messageDiv.innerHTML = `
-                    <p>${text}</p>
-                    <div class="message-time">${timeString}</div>
-                `;
-                
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+   
+        // OpenAI API integration
+        const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+        
+        // DOM elements
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendButton = document.getElementById('sendButton');
+        const suggestions = document.querySelectorAll('.suggestion');
+        const apiKeyInput = document.getElementById('apiKeyInput');
+        const saveApiKeyButton = document.getElementById('saveApiKey');
+        
+        // Load saved API key
+        let apiKey = localStorage.getItem('travelBuddyApiKey');
+        if (apiKey) {
+            apiKeyInput.value = '••••••••••••••••';
+        }
+        
+        // Save API key
+        saveApiKeyButton.addEventListener('click', () => {
+            const key = apiKeyInput.value.trim();
+            if (key) {
+                apiKey = key;
+                localStorage.setItem('travelBuddyApiKey', key);
+                apiKeyInput.value = '••••••••••••••••';
+                addBotMessage("API key saved successfully! You can now chat with the AI assistant.");
+            } else {
+                addBotMessage("Please enter a valid OpenAI API key.");
             }
-            
-            // Show typing indicator
-            function showTypingIndicator() {
-                const typingDiv = document.createElement('div');
-                typingDiv.classList.add('typing-indicator');
-                typingDiv.innerHTML = `
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <span>Travel Buddy is typing...</span>
-                `;
-                chatMessages.appendChild(typingDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                return typingDiv;
-            }
-            
-            // Process user input
-            function processInput() {
-                const question = userInput.value.trim();
-                if (!question) return;
-                
-                // Add user message
-                addMessage(question, true);
-                userInput.value = '';
-                
-                // Show typing indicator
-                const typingIndicator = showTypingIndicator();
-                
-                // Find response after delay to simulate AI processing
-                setTimeout(() => {
-                    // Remove typing indicator
-                    typingIndicator.remove();
-                    
-                    // Find matching response
-                    let response = responses.default;
-                    for (const [key, value] of Object.entries(responses)) {
-                        if (question.toLowerCase().includes(key.toLowerCase())) {
-                            response = value;
-                            break;
-                        }
-                    }
-                    
-                    // Add bot response
-                    addMessage(response);
-                }, 1500);
-            }
-            
-            // Event listeners
-            sendButton.addEventListener('click', processInput);
-            
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    processInput();
-                }
-            });
-            
-            // Suggestions
-            suggestions.forEach(suggestion => {
-                suggestion.addEventListener('click', function() {
-                    userInput.value = this.getAttribute('data-question');
-                    processInput();
-                });
-            });
-            
-            // Add initial bot message after a delay
-            setTimeout(() => {
-                addMessage("I can help you with: destination recommendations, packing lists, budget planning, cultural tips, and travel advisories. What would you like to know?");
-            }, 1000);
         });
+        
+        // Add message to chat
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            
+            const now = new Date();
+            const timeString = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+            
+            // Format links in the response
+            let formattedText = text;
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            formattedText = formattedText.replace(urlRegex, url => {
+                return `<a href="${url}" target="_blank" style="color: var(--primary);">${url}</a>`;
+            });
+            
+            messageDiv.innerHTML = `
+                <p>${formattedText}</p>
+                <div class="message-time">${timeString}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Add bot message
+        function addBotMessage(text) {
+            addMessage(text, false);
+        }
+        
+        // Show typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('typing-indicator');
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <span>Travel Buddy is typing...</span>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typingDiv;
+        }
+        
+        // Get AI response from OpenAI API
+        async function getAIResponse(userMessage) {
+            if (!apiKey) {
+                return "Please add your OpenAI API key to enable real responses. Get your API key from OpenAI's website and click 'Save Key' below.";
+            }
+            
+            const typingIndicator = showTypingIndicator();
+            sendButton.disabled = true;
+            
+            try {
+                const response = await fetch(OPENAI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",
+                        messages: [
+                            {
+                                role: "system",
+                                content: "You are a helpful travel assistant for Travel Buddy. Provide concise, helpful travel advice. Format your responses with clear paragraphs. When suggesting destinations, include brief reasons why they're recommended. For packing lists, use bullet points. For itineraries, break them down by days. Always aim for responses between 100-300 words."
+                            },
+                            {
+                                role: "user",
+                                content: userMessage
+                            }
+                        ],
+                        max_tokens: 500,
+                        temperature: 0.7
+                    })
+                });
+                
+                const data = await response.json();
+                typingIndicator.remove();
+                sendButton.disabled = false;
+                
+                if (data.choices && data.choices.length > 0) {
+                    return data.choices[0].message.content.trim();
+                } else {
+                    return "I couldn't process your request. Please try again.";
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                typingIndicator.remove();
+                sendButton.disabled = false;
+                return "Sorry, I encountered an error. Please check your API key and connection.";
+            }
+        }
+        
+        // Process user input
+        async function processInput() {
+            const question = userInput.value.trim();
+            if (!question) return;
+            
+            // Add user message
+            addMessage(question, true);
+            userInput.value = '';
+            
+            // Get AI response
+            const response = await getAIResponse(question);
+            addBotMessage(response);
+        }
+        
+        // Event listeners
+        sendButton.addEventListener('click', processInput);
+        
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processInput();
+            }
+        });
+        
+        // Suggestions
+        suggestions.forEach(suggestion => {
+            suggestion.addEventListener('click', function() {
+                userInput.value = this.getAttribute('data-question');
+                processInput();
+            });
+        });
+    
