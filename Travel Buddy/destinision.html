@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy | Explore Destinations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-compass"></i>TravelBuddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="destinision.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planTrip.html">PlanTrip</a></li>
+                    <li class="nav-item"><a class="nav-link" href="TravelTip.html">TravelTips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AIchatbot.html">AI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+                </ul>
+                <button class="btn btn-gradient ms-1">BookNow</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Destinations Hero -->
+    <section class="destinations-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Explore Our Destinations</h1>
+                <p class="hero-subtitle">Discover breathtaking places around the world with Travel Buddy. Find your perfect getaway from tropical beaches to majestic mountains.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--Filter Section -->
+    <div class="container">
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Find Your Perfect Destination</h3>
+                <button class="filter-reset" id="resetFilters">
+                    <i class="fas fa-sync-alt me-1"></i>Reset Filters
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label class="filter-label">Continent</label>
+                    <select class="filter-select" id="continentFilter">
+                        <option value="all">All Continents</option>
+                        <option value="europe">Europe</option>
+                        <option value="asia">Asia</option>
+                        <option value="americas">Americas</option>
+                        <option value="africa">Africa</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Price Range</label>
+                    <select class="filter-select" id="priceFilter">
+                        <option value="all">All Prices</option>
+                        <option value="low">Under $1000</option>
+                        <option value="medium">$1000 - $1500</option>
+                        <option value="high">Over $1500</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Duration</label>
+                    <select class="filter-select" id="durationFilter">
+                        <option value="all">Any Duration</option>
+                        <option value="short">1-5 Days</option>
+                        <option value="medium">6-9 Days</option>
+                        <option value="long">10+ Days</option>
+                    </select>
+                </div>
+            </div>
+            
+            <label class="filter-label">Categories</label>
+            <div class="filter-tags">
+                <div class="filter-btn" data-category="all">All</div>
+                <div class="filter-btn" data-category="beaches">Beaches</div>
+                <div class="filter-btn" data-category="mountains">Mountains</div>
+                <div class="filter-btn" data-category="cities">Cities</div>
+                <div class="filter-btn" data-category="cultural">Cultural</div>
+                <div class="filter-btn" data-category="adventure">Adventure</div>
+                <div class="filter-btn" data-category="luxury">Luxury</div>
+            </div>
+            
+            <div class="filter-stats">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="resultsCount">Showing 6 of 6 destinations</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Destinations Grid -->
+    <section class="destinations-grid">
+        <div class="container">
+            <h2 class="section-title">Featured Destinations</h2>
+            
+            <div class="row" id="destinationsContainer">
+                <!-- Bali, Indonesia -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="asia" 
+                     data-price="899" 
+                     data-duration="7"
+                     data-categories="beaches cultural luxury">
+                    <img src="https://images.unsplash.com/photo-1545579133-99bb5ab189bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Bali">
+                    <div class="price-tag">$899</div>
+                    <div class="card-body">
+                        <h5>Bali, Indonesia</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Beaches</span>
+                            <span class="destination-tag">Cultural</span>
+                            <span class="destination-tag">Luxury</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8</span>
+                        </div>
+                        <p>Experience the island of gods with its beautiful beaches, vibrant culture and lush landscapes.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>7 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paris, France -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="europe" 
+                     data-price="1299" 
+                     data-duration="5"
+                     data-categories="cities cultural luxury">
+                    <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" class="card-img-top" alt="Paris">
+                    <div class="price-tag">$1299</div>
+                    <div class="card-body">
+                        <h5>Paris, France</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Cities</span>
+                            <span class="destination-tag">Cultural</span>
+                            <span class="destination-tag">Luxury</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <p>The city of lights offers iconic landmarks, exquisite cuisine, and romantic ambiance.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>5 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tokyo, Japan -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="asia" 
+                     data-price="1499" 
+                     data-duration="8"
+                     data-categories="cities cultural">
+                    <img src="https://images.unsplash.com/photo-1590523278191-995cbcda646b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" class="card-img-top" alt="Tokyo">
+                    <div class="price-tag">$1499</div>
+                    <div class="card-body">
+                        <h5>Tokyo, Japan</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Cities</span>
+                            <span class="destination-tag">Cultural</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                        <p>A fascinating blend of ancient traditions and cutting-edge technology awaits you.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>8 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Santorini, Greece -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="europe" 
+                     data-price="1099" 
+                     data-duration="6"
+                     data-categories="beaches cultural luxury">
+                    <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" class="card-img-top" alt="Santorini">
+                    <div class="price-tag">$1099</div>
+                    <div class="card-body">
+                        <h5>Santorini, Greece</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Beaches</span>
+                            <span class="destination-tag">Cultural</span>
+                            <span class="destination-tag">Luxury</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8</span>
+                        </div>
+                        <p>White-washed buildings and blue domes overlooking the crystal-clear Aegean Sea.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>6 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Machu Picchu, Peru -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="americas" 
+                     data-price="1599" 
+                     data-duration="9"
+                     data-categories="mountains cultural adventure">
+                    <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1083&q=80" class="card-img-top" alt="Machu Picchu">
+                    <div class="price-tag">$1599</div>
+                    <div class="card-body">
+                        <h5>Machu Picchu, Peru</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Mountains</span>
+                            <span class="destination-tag">Cultural</span>
+                            <span class="destination-tag">Adventure</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <p>Explore the ancient Incan citadel nestled high in the Andes Mountains.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>9 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Safari, Kenya -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="africa" 
+                     data-price="1999" 
+                     data-duration="10"
+                     data-categories="adventure">
+                    <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" class="card-img-top" alt="Safari">
+                    <div class="price-tag">$1999</div>
+                    <div class="card-body">
+                        <h5>Safari, Kenya</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Adventure</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7</span>
+                        </div>
+                        <p>Experience the thrill of wildlife in their natural habitat on an African safari.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>10 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional destinations for filtering -->
+                <!-- Swiss Alps, Switzerland -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="europe" 
+                     data-price="1899" 
+                     data-duration="7"
+                     data-categories="mountains adventure luxury">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Swiss Alps">
+                    <div class="price-tag">$1899</div>
+                    <div class="card-body">
+                        <h5>Swiss Alps, Switzerland</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Mountains</span>
+                            <span class="destination-tag">Adventure</span>
+                            <span class="destination-tag">Luxury</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                        <p>Majestic mountains, pristine lakes, and charming villages in the heart of Europe.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>7 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Maldives -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="asia" 
+                     data-price="2199" 
+                     data-duration="8"
+                     data-categories="beaches luxury">
+                    <img src="images/maldives.jpg" class="card-img-top" alt="Maldives">
+                    <div class="price-tag">$2199</div>
+                    <div class="card-body">
+                        <h5>Maldives</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Beaches</span>
+                            <span class="destination-tag">Luxury</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8</span>
+                        </div>
+                        <p>Pristine white-sand beaches, turquoise waters, and luxurious overwater bungalows.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>8 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grand Canyon, USA -->
+                <div class="col-lg-4 col-md-6 destination-card" 
+                     data-continent="americas" 
+                     data-price="1399" 
+                     data-duration="5"
+                     data-categories="adventure">
+                    <img src="images/USA.webp" class="card-img-top" alt="Grand Canyon">
+                    <div class="price-tag">$1399</div>
+                    <div class="card-body">
+                        <h5>Grand Canyon, USA</h5>
+                        <div class="destination-tags">
+                            <span class="destination-tag">Adventure</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7</span>
+                        </div>
+                        <p>Marvel at one of the world's most spectacular natural wonders carved by the Colorado River.</p>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <span><i class="fas fa-calendar me-2"></i>5 Days</span>
+                            <button class="btn btn-outline-light">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-gradient">Load More Destinations</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Continent Sections -->
+    <section class="continent-section europe-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="continent-title">European Adventures</h3>
+                    <p>Explore the diverse cultures, historic landmarks, and breathtaking landscapes of Europe. From the romantic streets of Paris to the ancient ruins of Rome, Europe offers unforgettable experiences.</p>
+                    <div class="mt-4">
+                        <button class="btn btn-gradient me-3">Explore Europe</button>
+                        <button class="btn btn-outline-light">View Packages</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="continent-section asia-section">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-lg-6">
+                    <h3 class="continent-title">Asian Wonders</h3>
+                    <p>Discover the vibrant cultures, ancient traditions, and stunning landscapes of Asia. From the bustling streets of Tokyo to the serene beaches of Bali, Asia offers a journey of discovery.</p>
+                    <div class="mt-4">
+                        <button class="btn btn-gradient me-3">Explore Asia</button>
+                        <button class="btn btn-outline-light">View Packages</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="continent-section americas-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="continent-title">Americas Exploration</h3>
+                    <p>Experience the diverse landscapes and cultures of the Americas. From the natural wonders of the Grand Canyon to the vibrant cities of South America, the Americas offer endless adventure.</p>
+                    <div class="mt-4">
+                        <button class="btn btn-gradient me-3">Explore Americas</button>
+                        <button class="btn btn-outline-light">View Packages</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="continent-section africa-section">
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-lg-6">
+                    <h3 class="continent-title">African Journeys</h3>
+                    <p>Embark on a journey through the diverse landscapes and rich cultures of Africa. From the Sahara Desert to the savannas of Kenya, Africa offers unique and unforgettable experiences.</p>
+                    <div class="mt-4">
+                        <button class="btn btn-gradient me-3">Explore Africa</button>
+                        <button class="btn btn-outline-light">View Packages</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="navbar-brand mb-3"><i class="fas fa-compass"></i>TravelBuddy</h3>
+                    <p>Creating unforgettable travel experiences since 2010. We specialize in personalized journeys to the world's most breathtaking destinations.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h4 class="footer-title">Explore</h4>
+                    <ul class="list-unstyled">
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Plan Trips</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Travel Tips</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">AI Chatbot</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Gallery</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Travel Street, NewYork</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@travelbuddy.com</li>
+                         <li class="mb-2"><i class="fas fa-clock me-2"></i>Mon-Fri: 9AM - 6PM</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 ml-5">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p>Subscribe to our newsletter for travel updates and exclusive offers.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button class="btn btn-gradient" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-4 border-top border-secondary">
+                <p>&copy; 2023 TravelBuddy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
