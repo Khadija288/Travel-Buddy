@@ -35,61 +35,999 @@
         </div>
     </nav>
 
-    <div class="chat-container">
-        <div class="chat-header">
-            <div class="avatar">
-                <i class="fas fa-compass"></i>
-            </div>
-            <div class="chat-header-info">
-                <h2>Travel Buddy AI Assistant</h2>
-                <p><span class="status-indicator"></span> Online - Ready to assist with your travel plans</p>
-            </div>
-        </div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Buddy | Plan Your Trip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --dark: #0f172a;
+            --light: #f8f9fa;
+            --gold: #f1c40f;
+            --transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
         
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot-message">
-                <p>Hello! 👋 I'm your Travel Buddy AI assistant. How can I help you with your travel plans today?</p>
-                <div class="message-time">Just now</div>
-            </div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0b0f1a, #1a1f2d);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        /* Premium Navigation */
+        .navbar {
+            background: rgba(16, 20, 30, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 20px 0;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(16, 20, 30, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.03);
+        }
+        
+        .navbar-brand i {
+            margin-right: 12px;
+            font-size: 1.8rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: var(--transition);
+            position: relative;
+            padding: 10px 15px !important;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: var(--transition);
+            box-shadow: 0 5px 25px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(52, 152, 219, 0.6);
+        }
+        
+        /* Hero Section for Planning */
+        .plan-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0 50px;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0f172a, #1e3a5f, #2c3e50);
+            background-size: 300% 300%;
+            animation: gradient 15s ease infinite;
+            z-index: -2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Trip Planner Section */
+        .trip-planner {
+            padding: 80px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .planner-container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 50px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .form-label i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+        
+        .form-control, .form-select {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background: rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+            color: white;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .interest-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .interest-item:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .interest-item.selected {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .interest-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        
+        .budget-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .budget-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .budget-slider::-webkit-slider-thumb:hover {
+            background: var(--secondary);
+            transform: scale(1.2);
+        }
+        
+        .budget-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--gold);
+        }
+        
+        .days-input {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .days-input button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--gold);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .days-input button:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .days-input input {
+            text-align: center;
+            max-width: 100px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        /* Itinerary Section */
+        .itinerary-section {
+            display: none;
+            padding: 50px 0;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .itinerary-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+        }
+        
+        .itinerary-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .itinerary-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .itinerary-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+        }
+        
+        .itinerary-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .detail-card {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .detail-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .day-plan {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .day-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .activity {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .activity-time {
+            min-width: 120px;
+            font-weight: 600;
+            padding: 8px 15px;
+            background: rgba(52, 152, 219, 0.2);
+            border-radius: 30px;
+            text-align: center;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .activity-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .rec-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .rec-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .rec-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .rec-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .rec-card:hover .rec-image img {
+            transform: scale(1.1);
+        }
+        
+        .rec-content {
+            padding: 20px;
+        }
+        
+        .rec-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .rec-meta {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
             
-            <div class="message bot-message">
-                <p>I can assist with:</p>
-                <ul style="padding-left: 20px; margin-top: 10px;">
-                    <li>Destination recommendations</li>
-                    <li>Packing lists for specific locations/seasons</li>
-                    <li>Travel itineraries and planning</li>
-                    <li>Budgeting and cost-saving tips</li>
-                    <li>Cultural insights and local etiquette</li>
+            .planner-container {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .planner-container {
+                padding: 20px;
+            }
+            
+            .interests-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .itinerary-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Premium Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-compass"></i>TravelBuddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Plan Trip</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Deals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                 </ul>
-                <div class="message-time">Just now</div>
+                <button class="btn btn-gradient ms-3">Book Now</button>
             </div>
         </div>
-        
-        <div class="chat-input-container">
-            <div class="chat-input-box">
-                <input type="text" class="chat-input" id="userInput" placeholder="Ask about travel destinations, packing lists, itineraries...">
-                <button class="send-button" id="sendButton">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="plan-hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Plan Your Perfect Trip</h1>
+                <p class="hero-subtitle">Let Travel Buddy craft your dream vacation with our intelligent trip planner. Answer a few questions and we'll create a personalized itinerary just for you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trip Planner Section -->
+    <section class="trip-planner">
+        <div class="container">
+            <div class="planner-container">
+                <h2 class="section-title">Create Your Itinerary</h2>
+                
+                <form id="tripForm">
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label"><i class="fas fa-user"></i> Your Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label"><i class="fas fa-map-marker-alt"></i> Travel Destination</label>
+                            <select class="form-select" id="destination" required>
+                                <option value="">Select a destination</option>
+                                <option value="bali">Bali, Indonesia</option>
+                                <option value="paris">Paris, France</option>
+                                <option value="kyoto">Kyoto, Japan</option>
+                                <option value="santorini">Santorini, Greece</option>
+                                <option value="newyork">New York, USA</option>
+                                <option value="swiss">Swiss Alps</option>
+                                <option value="barcelona">Barcelona, Spain</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label"><i class="fas fa-calendar-alt"></i> Travel Dates</label>
+                            <input type="text" class="form-control" id="dates" placeholder="Select dates" onfocus="(this.type='date')" required>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label class="form-label"><i class="fas fa-users"></i> Travelers</label>
+                            <select class="form-select" id="travelers" required>
+                                <option value="">Number of travelers</option>
+                                <option value="1">1 Traveler</option>
+                                <option value="2">2 Travelers</option>
+                                <option value="3">3 Travelers</option>
+                                <option value="4">4 Travelers</option>
+                                <option value="5">5+ Travelers</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label"><i class="fas fa-coins"></i> Budget (Per Person)</label>
+                        <input type="range" class="budget-slider" id="budget" min="500" max="5000" step="100" value="1500">
+                        <div class="budget-value">$<span id="budgetValue">1500</span></div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="form-label"><i class="fas fa-sun"></i> Number of Days</label>
+                        <div class="days-input">
+                            <button type="button" id="decreaseDays"><i class="fas fa-minus"></i></button>
+                            <input type="number" class="form-control" id="days" min="3" max="21" value="7" readonly>
+                            <button type="button" id="increaseDays"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <label class="form-label"><i class="fas fa-heart"></i> Your Interests</label>
+                        <div class="interests-grid">
+                            <div class="interest-item" data-interest="adventure">
+                                <div class="interest-icon"><i class="fas fa-hiking"></i></div>
+                                <div>Adventure</div>
+                            </div>
+                            <div class="interest-item" data-interest="relaxation">
+                                <div class="interest-icon"><i class="fas fa-spa"></i></div>
+                                <div>Relaxation</div>
+                            </div>
+                            <div class="interest-item" data-interest="culture">
+                                <div class="interest-icon"><i class="fas fa-landmark"></i></div>
+                                <div>Culture</div>
+                            </div>
+                            <div class="interest-item" data-interest="food">
+                                <div class="interest-icon"><i class="fas fa-utensils"></i></div>
+                                <div>Food</div>
+                            </div>
+                            <div class="interest-item" data-interest="shopping">
+                                <div class="interest-icon"><i class="fas fa-shopping-bag"></i></div>
+                                <div>Shopping</div>
+                            </div>
+                            <div class="interest-item" data-interest="nature">
+                                <div class="interest-icon"><i class="fas fa-tree"></i></div>
+                                <div>Nature</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="interests" name="interests">
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-gradient btn-lg px-5">Generate My Itinerary <i class="fas fa-arrow-right ms-2"></i></button>
+                    </div>
+                </form>
             </div>
             
-            <div class="suggestions">
-                <div class="suggestion" data-question="What to pack for Murree in December?">What to pack for Murree in December?</div>
-                <div class="suggestion" data-question="Suggest a 5-day itinerary for Bali">5-day Bali itinerary</div>
-                <div class="suggestion" data-question="Budget-friendly European destinations">Budget Europe destinations</div>
-                <div class="suggestion" data-question="Best time to visit Switzerland">Best time for Switzerland</div>
-            </div>
-            
-            <div class="api-key-container">
-                <p><i class="fas fa-key"></i> <strong>API Key Required</strong> - To enable real AI responses, add your OpenAI API key:</p>
-                <div class="api-key-input">
-                    <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API key">
-                    <button id="saveApiKey">Save Key</button>
+            <!-- Itinerary Result -->
+            <div class="itinerary-section" id="itineraryResult">
+                <div class="itinerary-card">
+                    <div class="itinerary-header">
+                        <h2 class="itinerary-title" id="itineraryTitle">Your Personalized Itinerary</h2>
+                        <p class="itinerary-subtitle">Crafted especially for you based on your preferences</p>
+                    </div>
+                    
+                    <div class="itinerary-details">
+                        <div class="detail-card">
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <h3 id="destinationName">Destination</h3>
+                            <p>Location</p>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <h3 id="tripDuration">7 Days</h3>
+                            <p>Duration</p>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon"><i class="fas fa-coins"></i></div>
+                            <h3 id="tripBudget">$1,500</h3>
+                            <p>Budget per person</p>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon"><i class="fas fa-users"></i></div>
+                            <h3 id="travelersCount">2 Travelers</h3>
+                            <p>Group Size</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="section-title">Day-by-Day Plan</h3>
+                    
+                    <div id="dayPlans">
+                        <!-- Day plans will be generated here -->
+                    </div>
+                    
+                    <h3 class="section-title">Recommended For You</h3>
+                    
+                    <div class="recommendations">
+                        <div class="rec-card">
+                            <div class="rec-image">
+                                <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80">
+                            </div>
+                            <div class="rec-content">
+                                <h4 class="rec-title">Luxury Beach Resort</h4>
+                                <p>Experience ultimate relaxation with our premium beachfront accommodation package.</p>
+                                <div class="rec-meta">
+                                    <span><i class="fas fa-tag"></i> $299/night</span>
+                                    <span><i class="fas fa-star"></i> 4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="rec-card">
+                            <div class="rec-image">
+                                <img src="https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
+                            </div>
+                            <div class="rec-content">
+                                <h4 class="rec-title">Gourmet Food Tour</h4>
+                                <p>Taste the best local cuisine with our expert-guided food experience.</p>
+                                <div class="rec-meta">
+                                    <span><i class="fas fa-tag"></i> $89/person</span>
+                                    <span><i class="fas fa-star"></i> 5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="rec-card">
+                            <div class="rec-image">
+                                <img src="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80">
+                            </div>
+                            <div class="rec-content">
+                                <h4 class="rec-title">Adventure Package</h4>
+                                <p>Three thrilling activities including rafting, hiking and zip-lining.</p>
+                                <div class="rec-meta">
+                                    <span><i class="fas fa-tag"></i> $199/person</span>
+                                    <span><i class="fas fa-star"></i> 4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="key-note">Your key is stored locally and only used to communicate with OpenAI's API. Get your API key from <a href="https://platform.openai.com/account/api-keys" target="_blank" style="color: var(--primary);">OpenAI's website</a>.</p>
+                
+                <div class="text-center mt-4">
+                    <button class="btn btn-gradient me-3"><i class="fas fa-download me-2"></i> Download Itinerary</button>
+                    <button class="btn btn-outline-light" id="editPlan"><i class="fas fa-edit me-2"></i> Edit Plan</button>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Budget slider
+        const budgetSlider = document.getElementById('budget');
+        const budgetValue = document.getElementById('budgetValue');
+        
+        budgetSlider.addEventListener('input', function() {
+            budgetValue.textContent = this.value;
+        });
+        
+        // Days input buttons
+        const decreaseBtn = document.getElementById('decreaseDays');
+        const increaseBtn = document.getElementById('increaseDays');
+        const daysInput = document.getElementById('days');
+        
+        decreaseBtn.addEventListener('click', function() {
+            if (parseInt(daysInput.value) > 3) {
+                daysInput.value = parseInt(daysInput.value) - 1;
+            }
+        });
+        
+        increaseBtn.addEventListener('click', function() {
+            if (parseInt(daysInput.value) < 21) {
+                daysInput.value = parseInt(daysInput.value) + 1;
+            }
+        });
+        
+        // Interest selection
+        const interestItems = document.querySelectorAll('.interest-item');
+        const interestsInput = document.getElementById('interests');
+        
+        let selectedInterests = [];
+        
+        interestItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const interest = this.getAttribute('data-interest');
+                
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    selectedInterests = selectedInterests.filter(i => i !== interest);
+                } else {
+                    this.classList.add('selected');
+                    selectedInterests.push(interest);
+                }
+                
+                interestsInput.value = selectedInterests.join(',');
+            });
+        });
+        
+        // Form submission
+        const tripForm = document.getElementById('tripForm');
+        const itineraryResult = document.getElementById('itineraryResult');
+        const itineraryTitle = document.getElementById('itineraryTitle');
+        const destinationName = document.getElementById('destinationName');
+        const tripDuration = document.getElementById('tripDuration');
+        const tripBudget = document.getElementById('tripBudget');
+        const travelersCount = document.getElementById('travelersCount');
+        const dayPlans = document.getElementById('dayPlans');
+        const editPlanBtn = document.getElementById('editPlan');
+        
+        // Destination data for itinerary generation
+        const destinationData = {
+            "bali": {
+                name: "Bali, Indonesia",
+                description: "Tropical paradise with stunning beaches and vibrant culture",
+                activities: {
+                    "adventure": ["White Water Rafting", "Mount Batur Sunrise Trek", "ATV Adventure"],
+                    "relaxation": ["Spa Retreat", "Beach Yoga", "Meditation Session"],
+                    "culture": ["Traditional Dance Show", "Temple Tour", "Balinese Cooking Class"],
+                    "food": ["Local Food Market Tour", "Seafood Dinner", "Coffee Tasting"],
+                    "shopping": ["Ubud Art Market", "Seminyak Boutiques", "Silver Jewelry Workshop"],
+                    "nature": ["Rice Terrace Walk", "Waterfall Exploration", "Monkey Forest Visit"]
+                }
+            },
+            "paris": {
+                name: "Paris, France",
+                description: "Romantic city of lights, art, and culinary delights",
+                activities: {
+                    "adventure": ["Seine River Kayaking", "Catacombs Exploration", "Montmartre Steps Climb"],
+                    "relaxation": ["Luxury Spa Day", "Picnic at Luxembourg Gardens", "Boat Cruise"],
+                    "culture": ["Louvre Museum Tour", "Notre Dame Visit", "Opera Garnier Show"],
+                    "food": ["Patisserie Tour", "Wine Tasting", "Cheese Workshop"],
+                    "shopping": ["Champs-Élysées", "Le Marais Boutiques", "Antique Markets"],
+                    "nature": ["Versailles Gardens", "Bois de Boulogne", "Botanical Gardens"]
+                }
+            },
+            "kyoto": {
+                name: "Kyoto, Japan",
+                description: "Ancient capital with temples, gardens, and traditional culture",
+                activities: {
+                    "adventure": ["Bamboo Forest Hike", "Cycling Tour", "Archery Experience"],
+                    "relaxation": ["Onsen Experience", "Tea Ceremony", "Zen Garden Meditation"],
+                    "culture": ["Geisha District Tour", "Samurai Museum", "Kimono Wearing"],
+                    "food": ["Sushi Making Class", "Ramen Tasting", "Market Food Tour"],
+                    "shopping": ["Nishiki Market", "Pottery District", "Traditional Crafts"],
+                    "nature": ["Fushimi Inari Shrines", "Cherry Blossom Viewing", "Monkey Park"]
+                }
+            }
+        };
+        
+        tripForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const destination = document.getElementById('destination').value;
+            const budget = budgetSlider.value;
+            const days = daysInput.value;
+            const travelers = document.getElementById('travelers').value;
+            
+            // Validate interests
+            if (selectedInterests.length === 0) {
+                alert("Please select at least one interest");
+                return;
+            }
+            
+            // Update itinerary header
+            itineraryTitle.textContent = `${name}'s ${destinationData[destination]?.name || "Dream"} Adventure`;
+            destinationName.textContent = destinationData[destination]?.name || "Selected Destination";
+            tripDuration.textContent = `${days} Days`;
+            tripBudget.textContent = `$${budget}`;
+            travelersCount.textContent = `${travelers} Traveler${travelers > 1 ? 's' : ''}`;
+            
+            // Generate day plans
+            dayPlans.innerHTML = '';
+            for (let i = 1; i <= days; i++) {
+                const dayPlan = document.createElement('div');
+                dayPlan.className = 'day-plan';
+                dayPlan.innerHTML = `
+                    <h3 class="day-title"><i class="fas fa-calendar-day"></i> Day ${i}</h3>
+                    <div class="activity">
+                        <div class="activity-time">9:00 AM</div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Morning Exploration</h4>
+                            <p class="activity-desc">Begin your day with a guided tour of the city's historic landmarks and hidden gems.</p>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activity-time">1:00 PM</div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Local Cuisine Experience</h4>
+                            <p class="activity-desc">Enjoy authentic dishes at a highly-rated local restaurant with traditional ambiance.</p>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activity-time">4:00 PM</div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Cultural Workshop</h4>
+                            <p class="activity-desc">Participate in a hands-on workshop to learn about local crafts and traditions.</p>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <div class="activity-time">7:00 PM</div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Evening Entertainment</h4>
+                            <p class="activity-desc">Experience the vibrant nightlife with a performance or scenic evening tour.</p>
+                        </div>
+                    </div>
+                `;
+                dayPlans.appendChild(dayPlan);
+            }
+            
+            // Show itinerary
+            itineraryResult.style.display = 'block';
+            
+            // Scroll to itinerary
+            itineraryResult.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Edit plan button
+        editPlanBtn.addEventListener('click', function() {
+            itineraryResult.style.display = 'none';
+            document.getElementById('tripForm').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
 
   <footer class="footer">
         <div class="container">
