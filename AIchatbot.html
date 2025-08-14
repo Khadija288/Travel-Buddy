@@ -1,141 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI chatbot | Travel Buddy</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Chatbot | Travel Buddy</title>
 
-</head>
-<body>
-     <!-- Navigation Bar -->
-   <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-compass"></i>TravelBuddy</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="destinision.html">Destinations</a></li>
-                    <li class="nav-item"><a class="nav-link" href="planTrip.html">PlanTrip</a></li>
-                    <li class="nav-item"><a class="nav-link" href="TravelTip.html">TravelTips</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="AIchatbot.html">AI</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
-                </ul>
-                <button class="btn btn-gradient ms-1">BookNow</button>
-            </div>
-        </div>
-    </nav>
+  <!-- Bootstrap / Icons / Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet"/>
 
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Buddy | Plan Your Trip</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #3498db;
-            --secondary: #2ecc71;
-            --accent: #e74c3c;
-            --dark: #0f172a;
-            --light: #f8f9fa;
-            --gold: #f1c40f;
-            --transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #0b0f1a, #1a1f2d);
-            color: #fff;
-            overflow-x: hidden;
-            line-height: 1.6;
-            padding-top: 80px;
-        }
-        
-        h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-        
-        /* Premium Navigation */
+  <style>
+    :root{
+      --primary:#3498db; --secondary:#2ecc71; --dark:#0f172a; --light:#f8f9fa;
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:linear-gradient(135deg,#0b0f1a,#1a1f2d);
+      color:#fff; padding-top:80px;
+    }
+    h1,h2,h3{font-family:'Playfair Display',serif}
+           /* Navigation */
         .navbar {
             background: rgba(16, 20, 30, 0.85);
             backdrop-filter: blur(12px);
-            padding: 20px 0;
-            transition: var(--transition);
+            padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             z-index: 1000;
-        }
-        
-        .navbar.scrolled {
-            background: rgba(16, 20, 30, 0.95);
-            padding: 15px 0;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            margin-top: -75px;
         }
         
         .navbar-brand {
-            font-weight: 800;
+            margin-left: 0;
+            font-weight: 500;
             font-size: 2rem;
-            letter-spacing: 1px;
             display: flex;
-            align-items: center;
+            align-items: center; 
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transition: var(--transition);
-        }
-        
-        .navbar-brand:hover {
-            transform: scale(1.03);
         }
         
         .navbar-brand i {
-            margin-right: 12px;
+            margin-left: 0%;
+            margin-right: 10px;
             font-size: 1.8rem;
-            animation: pulse 2s infinite;
         }
         
-        .nav-link {
-            color: rgba(255, 255, 255, 0.85) !important;
+         .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
             font-weight: 500;
-            margin: 0 10px;
+            margin: 0;
             transition: var(--transition);
             position: relative;
-            padding: 10px 15px !important;
-            border-radius: 50px;
-            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0px;
+            font-size: 0.9rem;
         }
         
         .nav-link:hover, .nav-link.active {
             color: white !important;
-            background: rgba(255, 255, 255, 0.1);
         }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
         
         .btn-gradient {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
             color: white;
             font-weight: 600;
-            padding: 12px 30px;
+            padding: 6px 12px;
             border-radius: 50px;
             position: relative;
             overflow: hidden;
@@ -148,10 +97,75 @@
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(52, 152, 219, 0.6);
         }
-        
-        
-    <!-- Premium Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+    /* Hero */
+    .hero{
+      padding:60px 0 30px;
+      text-align:center;
+    }
+    .hero h1{font-size:2.2rem; margin-bottom:.5rem}
+    .hero p{color:#cfd8e3; max-width:760px; margin:0 auto}
+
+    /* Chat Layout */
+    .chat-wrap{
+      max-width:1100px; margin:20px auto 60px; display:grid; gap:24px;
+      grid-template-columns: 1fr 340px;
+    }
+    @media (max-width: 992px){ .chat-wrap{grid-template-columns:1fr} }
+
+    .panel{
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+      border-radius:18px; padding:18px;
+    }
+    .panel h3{margin:0 0 10px; font-size:1.15rem}
+
+    /* Chat box */
+    .chat-box{
+      display:flex; flex-direction:column; height:70vh; min-height:520px;
+    }
+    .messages{
+      flex:1; overflow:auto; padding:8px 4px 8px 0; scroll-behavior:smooth;
+    }
+    .message{
+      max-width:85%; padding:12px 14px; border-radius:14px; margin:10px 0;
+      line-height:1.5; word-wrap:break-word;
+    }
+    .user-message{ margin-left:auto; background:#0e7490; }
+    .bot-message{ background:#1f2937; border:1px solid rgba(255,255,255,.06); }
+    .message-time{ font-size:.75rem; opacity:.7; margin-top:6px }
+    .typing{
+      display:flex; align-items:center; gap:6px; padding:8px 10px; opacity:.9;
+    }
+    .dot{width:8px; height:8px; border-radius:50%; background:#9ca3af; animation:bounce 1.4s infinite}
+    .dot:nth-child(2){animation-delay:.15s}
+    .dot:nth-child(3){animation-delay:.3s}
+    @keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+
+    .composer{
+      display:flex; gap:10px; margin-top:10px;
+      border-top:1px solid rgba(255,255,255,.08); padding-top:10px;
+    }
+    .composer input{
+      flex:1; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      background:#0b1220; color:#fff; padding:12px 14px;
+    }
+
+    /* Right column */
+    .suggestions .badge{
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
+      color:#fff; padding:10px 12px; border-radius:12px; cursor:pointer; display:block; width:100%; text-align:left;
+    }
+    .suggestions .badge + .badge{margin-top:10px}
+    .small-note{font-size:.85rem; color:#cbd5e1}
+    .footer{
+      border-top:1px solid rgba(255,255,255,.08); margin-top:40px; padding-top:18px; text-align:center; color:#cbd5e1
+    }
+  </style>
+</head>
+<body>
+
+   <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-compass"></i>TravelBuddy</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -159,417 +173,203 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Destinations</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Plan Trip</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Deals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinision.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planTrip.html">PlanTrip</a></li>
+                    <li class="nav-item"><a class="nav-link" href="TravelTip.html">TravelTips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AIchatbot.html">AI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
                 </ul>
-                <button class="btn btn-gradient ms-3">Book Now</button>
+                <button class="btn btn-gradient ms-1">BookNow</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="plan-hero">
-        <div class="hero-background"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Plan Your Perfect Trip</h1>
-                <p class="hero-subtitle">Let Travel Buddy craft your dream vacation with our intelligent trip planner. Answer a few questions and we'll create a personalized itinerary just for you.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- Trip Planner Section -->
-    <section class="trip-planner">
-        <div class="container">
-            <div class="planner-container">
-                <h2 class="section-title">Create Your Itinerary</h2>
-                
-                <form id="tripForm">
-                    <div class="row mb-4">
-                        <div class="col-md-6 mb-4">
-                            <label class="form-label"><i class="fas fa-user"></i> Your Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <label class="form-label"><i class="fas fa-map-marker-alt"></i> Travel Destination</label>
-                            <select class="form-select" id="destination" required>
-                                <option value="">Select a destination</option>
-                                <option value="bali">Bali, Indonesia</option>
-                                <option value="paris">Paris, France</option>
-                                <option value="kyoto">Kyoto, Japan</option>
-                                <option value="santorini">Santorini, Greece</option>
-                                <option value="newyork">New York, USA</option>
-                                <option value="swiss">Swiss Alps</option>
-                                <option value="barcelona">Barcelona, Spain</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="row mb-4">
-                        <div class="col-md-6 mb-4">
-                            <label class="form-label"><i class="fas fa-calendar-alt"></i> Travel Dates</label>
-                            <input type="text" class="form-control" id="dates" placeholder="Select dates" onfocus="(this.type='date')" required>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <label class="form-label"><i class="fas fa-users"></i> Travelers</label>
-                            <select class="form-select" id="travelers" required>
-                                <option value="">Number of travelers</option>
-                                <option value="1">1 Traveler</option>
-                                <option value="2">2 Travelers</option>
-                                <option value="3">3 Travelers</option>
-                                <option value="4">4 Travelers</option>
-                                <option value="5">5+ Travelers</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label class="form-label"><i class="fas fa-coins"></i> Budget (Per Person)</label>
-                        <input type="range" class="budget-slider" id="budget" min="500" max="5000" step="100" value="1500">
-                        <div class="budget-value">$<span id="budgetValue">1500</span></div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label class="form-label"><i class="fas fa-sun"></i> Number of Days</label>
-                        <div class="days-input">
-                            <button type="button" id="decreaseDays"><i class="fas fa-minus"></i></button>
-                            <input type="number" class="form-control" id="days" min="3" max="21" value="7" readonly>
-                            <button type="button" id="increaseDays"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-5">
-                        <label class="form-label"><i class="fas fa-heart"></i> Your Interests</label>
-                        <div class="interests-grid">
-                            <div class="interest-item" data-interest="adventure">
-                                <div class="interest-icon"><i class="fas fa-hiking"></i></div>
-                                <div>Adventure</div>
-                            </div>
-                            <div class="interest-item" data-interest="relaxation">
-                                <div class="interest-icon"><i class="fas fa-spa"></i></div>
-                                <div>Relaxation</div>
-                            </div>
-                            <div class="interest-item" data-interest="culture">
-                                <div class="interest-icon"><i class="fas fa-landmark"></i></div>
-                                <div>Culture</div>
-                            </div>
-                            <div class="interest-item" data-interest="food">
-                                <div class="interest-icon"><i class="fas fa-utensils"></i></div>
-                                <div>Food</div>
-                            </div>
-                            <div class="interest-item" data-interest="shopping">
-                                <div class="interest-icon"><i class="fas fa-shopping-bag"></i></div>
-                                <div>Shopping</div>
-                            </div>
-                            <div class="interest-item" data-interest="nature">
-                                <div class="interest-icon"><i class="fas fa-tree"></i></div>
-                                <div>Nature</div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="interests" name="interests">
-                    </div>
-                    
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-gradient btn-lg px-5">Generate My Itinerary <i class="fas fa-arrow-right ms-2"></i></button>
-                    </div>
-                </form>
-            </div>
-            
-            <!-- Itinerary Result -->
-            <div class="itinerary-section" id="itineraryResult">
-                <div class="itinerary-card">
-                    <div class="itinerary-header">
-                        <h2 class="itinerary-title" id="itineraryTitle">Your Personalized Itinerary</h2>
-                        <p class="itinerary-subtitle">Crafted especially for you based on your preferences</p>
-                    </div>
-                    
-                    <div class="itinerary-details">
-                        <div class="detail-card">
-                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <h3 id="destinationName">Destination</h3>
-                            <p>Location</p>
-                        </div>
-                        <div class="detail-card">
-                            <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
-                            <h3 id="tripDuration">7 Days</h3>
-                            <p>Duration</p>
-                        </div>
-                        <div class="detail-card">
-                            <div class="detail-icon"><i class="fas fa-coins"></i></div>
-                            <h3 id="tripBudget">$1,500</h3>
-                            <p>Budget per person</p>
-                        </div>
-                        <div class="detail-card">
-                            <div class="detail-icon"><i class="fas fa-users"></i></div>
-                            <h3 id="travelersCount">2 Travelers</h3>
-                            <p>Group Size</p>
-                        </div>
-                    </div>
-                    
-                    <h3 class="section-title">Day-by-Day Plan</h3>
-                    
-                    <div id="dayPlans">
-                        <!-- Day plans will be generated here -->
-                    </div>
-                    
-                    <h3 class="section-title">Recommended For You</h3>
-                    
-                    <div class="recommendations">
-                        <div class="rec-card">
-                            <div class="rec-image">
-                                <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80">
-                            </div>
-                            <div class="rec-content">
-                                <h4 class="rec-title">Luxury Beach Resort</h4>
-                                <p>Experience ultimate relaxation with our premium beachfront accommodation package.</p>
-                                <div class="rec-meta">
-                                    <span><i class="fas fa-tag"></i> $299/night</span>
-                                    <span><i class="fas fa-star"></i> 4.9</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="rec-card">
-                            <div class="rec-image">
-                                <img src="https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">
-                            </div>
-                            <div class="rec-content">
-                                <h4 class="rec-title">Gourmet Food Tour</h4>
-                                <p>Taste the best local cuisine with our expert-guided food experience.</p>
-                                <div class="rec-meta">
-                                    <span><i class="fas fa-tag"></i> $89/person</span>
-                                    <span><i class="fas fa-star"></i> 5.0</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="rec-card">
-                            <div class="rec-image">
-                                <img src="https://images.unsplash.com/photo-1599640842225-85d111c60e6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80">
-                            </div>
-                            <div class="rec-content">
-                                <h4 class="rec-title">Adventure Package</h4>
-                                <p>Three thrilling activities including rafting, hiking and zip-lining.</p>
-                                <div class="rec-meta">
-                                    <span><i class="fas fa-tag"></i> $199/person</span>
-                                    <span><i class="fas fa-star"></i> 4.8</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-4">
-                    <button class="btn btn-gradient me-3"><i class="fas fa-download me-2"></i> Download Itinerary</button>
-                    <button class="btn btn-outline-light" id="editPlan"><i class="fas fa-edit me-2"></i> Edit Plan</button>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Hero -->
+  <section class="hero container">
+    <h1>Chat with your Travel Buddy</h1>
+    <p>Ask for itineraries, best times to visit, packing lists, local tips, and more. Keep your API key private in production.</p>
+  </section>
 
-  <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h3 class="navbar-brand mb-3"><i class="fas fa-compass"></i>TravelBuddy</h3>
-                    <p>Creating unforgettable travel experiences since 2010. We specialize in personalized journeys to the world's most breathtaking destinations.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-2 mb-4">
-                    <h4 class="footer-title">Explore</h4>
-                    <ul class="list-unstyled">
-                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Plan Trips</a></li>
-                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Travel Tips</a></li>
-                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">AI Chatbot</a></li>
-                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Gallery</a></li>
-                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">About</a></li>
+  <div class="chat-wrap container">
+    <!-- Chat panel -->
+    <div class="panel chat-box">
+      <div class="messages" id="chatMessages"></div>
+      <div class="composer">
+        <input id="userInput" type="text" placeholder="Type your travel question and press Enter…"/>
+        <button id="sendButton" class="btn btn-gradient"><i class="fas fa-paper-plane me-1"></i> Send</button>
+      </div>
+    </div>
 
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h4 class="footer-title">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Travel Street, NewYork</li>
-                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@travelbuddy.com</li>
-                         <li class="mb-2"><i class="fas fa-clock me-2"></i>Mon-Fri: 9AM - 6PM</li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 mb-4 ml-5">
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p>Subscribe to our newsletter for travel updates and exclusive offers.</p>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Your Email">
-                        <button class="btn btn-gradient" type="button">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center pt-4 border-top border-secondary">
-                <p>&copy; 2023 TravelBuddy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-    <script src="script.js">
-         const chatMessages = document.getElementById('chat-messages');
-        const userInput = document.getElementById('user-input');
-        
-        // Scroll to bottom of chat
-        function scrollToBottom() {
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+    <!-- Tools / Suggestions -->
+    <div class="panel">
+      <h3 class="mb-2"><i class="fas fa-key me-2"></i>API Key</h3>
+      <div class="d-flex gap-2">
+        <input id="apiKeyInput" type="password" class="form-control" placeholder="sk-..."/>
+        <button id="saveApiKey" class="btn btn-gradient">Save Key</button>
+      </div>
+      <p class="small-note mt-2">For demo only: your key is stored in <code>localStorage</code>. In production, call your own backend.</p>
+
+      <h3 class="mt-4 mb-2"><i class="fas fa-lightbulb me-2"></i>Quick Prompts</h3>
+      <div class="suggestions">
+        <button class="badge suggestion" data-question="Plan me a 5-day Bali itinerary focused on beaches and food.">5-day Bali (beach + food)</button>
+        <button class="badge suggestion" data-question="When is the best time to visit Japan for cherry blossoms? Keep it concise.">Best time for sakura</button>
+        <button class="badge suggestion" data-question="Create a weekend itinerary for Paris with must-see highlights and a budget of $800.">Weekend Paris highlights</button>
+        <button class="badge suggestion" data-question="Packing list for a 7-day Thailand trip in November, carry-on only.">Carry-on Thailand packing</button>
+      </div>
+
+      <div class="footer">
+        <small>© 2025 TravelBuddy</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ====== Config ======
+    const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+    const OPENAI_MODEL   = 'gpt-3.5-turbo'; // For a demo. Use your preferred model.
+
+    // ====== DOM refs ======
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput    = document.getElementById('userInput');
+    const sendButton   = document.getElementById('sendButton');
+    const apiKeyInput  = document.getElementById('apiKeyInput');
+    const saveApiKey   = document.getElementById('saveApiKey');
+    const suggestions  = document.querySelectorAll('.suggestion');
+
+    // ====== LocalStorage Key ======
+    let apiKey = localStorage.getItem('travelBuddyApiKey') || '';
+
+    if (apiKey) {
+      apiKeyInput.value = '••••••••••••••••';
+      addBotMessage("Welcome back! Your API key is loaded. Ask me anything travel.");
+    } else {
+      addBotMessage("Hi! Add your OpenAI API key to enable real answers. (Demo only—don’t expose your key in production.)");
+    }
+
+    // ====== UI helpers ======
+    function addMessage(html, isUser = false) {
+      const wrap = document.createElement('div');
+      wrap.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2,'0');
+      const mm = String(now.getMinutes()).padStart(2,'0');
+
+      // auto-link URLs
+      const formatted = html.replace(/(https?:\/\/[^\s]+)/g, url =>
+        `<a href="${url}" target="_blank" style="color:#93c5fd">${url}</a>`
+      );
+
+      wrap.innerHTML = `<div>${formatted}</div><div class="message-time">${hh}:${mm}</div>`;
+      chatMessages.appendChild(wrap);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    function addBotMessage(text){ addMessage(text,false); }
+
+    function showTyping(){
+      const row = document.createElement('div');
+      row.className = 'typing bot-message';
+      row.innerHTML = `<span class="dot"></span><span class="dot"></span><span class="dot"></span><span> Travel Buddy is typing…</span>`;
+      chatMessages.appendChild(row);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return row;
+    }
+
+    // ====== API call ======
+    async function fetchAI(userText){
+      if (!apiKey) {
+        return "Please add your OpenAI API key first (click “Save Key”).";
+      }
+      const typing = showTyping();
+      sendButton.disabled = true;
+
+      try{
+        const res = await fetch(OPENAI_API_URL, {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: OPENAI_MODEL,
+            messages: [
+              {
+                role:'system',
+                content:
+`You are a helpful travel assistant for Travel Buddy.
+Keep answers concise (100–300 words).
+For itineraries: day-by-day bullets.
+For packing lists: bullets.
+When suggesting destinations, give brief reasons.`
+              },
+              { role:'user', content: userText }
+            ],
+            max_tokens: 500,
+            temperature: 0.7
+          })
+        });
+
+        const data = await res.json();
+        typing.remove();
+        sendButton.disabled = false;
+
+        if (data?.choices?.[0]?.message?.content) {
+          return data.choices[0].message.content.trim();
         }
-        
-        // Handle Enter key press
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+        if (data?.error?.message){
+          return `Error: ${data.error.message}`;
         }
-        
-        // Send message from quick actions
-        function sendQuickMessage(message) {
-            userInput.value = message;
-            sendMessage();
-        }
-        
-        // Send user message
-        function sendMessage() {
-            const message = userInput.value.trim();
-            if (!message) return;
-            
-            // Add user message to chat
-            addMessage(message, 'user');
-            userInput.value = '';
-            
-            // Show typing indicator
-            showTypingIndicator();
-            
-            // Simulate AI response after delay
-            setTimeout(() => {
-                removeTypingIndicator();
-                const response = generateResponse(message);
-                addMessage(response, 'bot');
-            }, 1500);
-        }
-        
-        // Add message to chat
-        function addMessage(text, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender);
-            messageElement.innerHTML = text;
-            chatMessages.appendChild(messageElement);
-            scrollToBottom();
-        }
-        
-        // Show typing indicator
-        function showTypingIndicator() {
-            const typingElement = document.createElement('div');
-            typingElement.classList.add('typing-indicator');
-            typingElement.id = 'typing-indicator';
-            typingElement.innerHTML = `
-                <span></span>
-                <span></span>
-                <span></span>
-            `;
-            chatMessages.appendChild(typingElement);
-            scrollToBottom();
-        }
-        
-        // Remove typing indicator
-        function removeTypingIndicator() {
-            const typingElement = document.getElementById('typing-indicator');
-            if (typingElement) {
-                typingElement.remove();
-            }
-        }
-        
-        // Generate AI response
-        function generateResponse(message) {
-            message = message.toLowerCase();
-            
-            // Sample responses based on keywords
-            if (message.includes('flight') || message.includes('fly')) {
-                return `✈️ For flight bookings, I can help you find the best deals! Based on your preferences, I recommend:<br><br>
-                <strong>Popular flight search options:</strong><br>
-                - Skyscanner for comprehensive comparisons<br>
-                - Google Flights for flexible date options<br>
-                - Kayak for package deals<br><br>
-                Would you like me to search for flights to a specific destination?`;
-            }
-            else if (message.includes('hotel') || message.includes('accommodation') || message.includes('stay')) {
-                return `🏨 Finding the perfect accommodation is key to a great trip! Here are some options:<br><br>
-                <strong>Top hotel booking platforms:</strong><br>
-                - Booking.com for extensive selection<br>
-                - Airbnb for unique stays<br>
-                - Agoda for Asian destinations<br><br>
-                Tell me your destination and travel dates for personalized recommendations!`;
-            }
-            else if (message.includes('itinerary') || message.includes('plan') || message.includes('schedule')) {
-                return `🗺️ I'd love to help plan your itinerary! Here's a sample 5-day Bali itinerary:<br><br>
-                <strong>Day 1:</strong> Ubud - Sacred Monkey Forest & Traditional Market<br>
-                <strong>Day 2:</strong> Tegallalang Rice Terraces & Cooking Class<br>
-                <strong>Day 3:</strong> Uluwatu Temple & Kecak Dance Performance<br>
-                <strong>Day 4:</strong> Nusa Penida Day Trip<br>
-                <strong>Day 5:</strong> Relax at Seminyak Beach<br><br>
-                Would you like me to customize this for your travel dates and preferences?`;
-            }
-            else if (message.includes('paris')) {
-                return `🇫🇷 Paris is always a great idea! Here are some must-see attractions:<br><br>
-                <strong>Top attractions:</strong><br>
-                - Eiffel Tower (book tickets in advance)<br>
-                - Louvre Museum (allow at least 4 hours)<br>
-                - Notre-Dame Cathedral (currently under renovation)<br>
-                - Montmartre and Sacré-Cœur<br><br>
-                <strong>Local tip:</strong> Take a Seine River cruise at sunset for magical views!`;
-            }
-            else if (message.includes('japan')) {
-                return `🗾 Japan offers incredible cultural experiences! For solo travelers:<br><br>
-                <strong>Recommendations:</strong><br>
-                - Stay in capsule hotels for budget-friendly solo accommodation<br>
-                - Get a JR Pass for unlimited train travel<br>
-                - Try local convenience stores (konbini) for affordable meals<br>
-                - Learn basic Japanese phrases<br><br>
-                <strong>Must-visit:</strong> Tokyo's Shibuya Crossing, Kyoto's temples, and Osaka's street food!`;
-            }
-            else if (message.includes('thailand')) {
-                return `🇹🇭 The best time to visit Thailand is between November and February when the weather is cooler and drier. Here's what to expect:<br><br>
-                <strong>Regional breakdown:</strong><br>
-                - North (Chiang Mai): Cool season is ideal<br>
-                - Central (Bangkok): November-February avoids heavy rains<br>
-                - South (Phuket): December-March for best beach weather<br><br>
-                <strong>Tip:</strong> Avoid April if you're sensitive to heat - this is the hottest month!`;
-            }
-            else if (message.includes('mexico')) {
-                return `🇲🇽 Mexico has fantastic family resorts! Top recommendations:<br><br>
-                <strong>Family-friendly resorts:</strong><br>
-                - Grand Velas Riviera Maya (Luxury, all-inclusive)<br>
-                - Moon Palace Cancun (Great kids' activities)<br>
-                - Hard Rock Hotel Riviera Maya (Teen-friendly)<br>
-                - Barceló Maya Grand Resort (Massive complex with water parks)<br><br>
-                <strong>Safety tip:</strong> Stick to resort areas and use official transportation for family travel.`;
-            }
-            else {
-                return `🌍 Thanks for your question! As your personal travel assistant, I can help with:<br><br>
-                - Destination recommendations based on your interests<br>
-                - Booking flights, hotels, and activities<br>
-                - Creating customized itineraries<br>
-                - Providing travel tips and local insights<br>
-                - Checking travel restrictions and requirements<br><br>
-                How can I assist with your travel plans today?`;
-            }
-        }
-        
-        // Initial scroll to bottom
-        window.onload = scrollToBottom;
-    </script>
+        return "I couldn't process that. Please try again.";
+      } catch (e){
+        typing.remove();
+        sendButton.disabled = false;
+        console.error(e);
+        return "Network or server error. Check your connection and API key.";
+      }
+    }
+
+    // ====== Events ======
+    async function handleSend(){
+      const text = userInput.value.trim();
+      if (!text) return;
+      addMessage(text, true);
+      userInput.value = '';
+      const reply = await fetchAI(text);
+      addBotMessage(reply);
+    }
+
+    sendButton.addEventListener('click', handleSend);
+    userInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') handleSend();
+    });
+
+    saveApiKey.addEventListener('click', ()=>{
+      const val = apiKeyInput.value.trim();
+      if (!val || val.startsWith('••')) {
+        addBotMessage("Please paste a valid API key (starts with <code>sk-</code>).");
+        return;
+      }
+      apiKey = val;
+      localStorage.setItem('travelBuddyApiKey', apiKey);
+      apiKeyInput.value = '••••••••••••••••';
+      addBotMessage("API key saved. You can now chat with the AI assistant.");
+    });
+
+    // Quick prompts
+    suggestions.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        userInput.value = btn.getAttribute('data-question') || '';
+        handleSend();
+      });
+    });
+  </script>
 </body>
 </html>
