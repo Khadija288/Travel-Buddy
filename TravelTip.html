@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tips | Travel Buddy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+   <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-compass"></i>TravelBuddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="destinision.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planTrip.html">PlanTrip</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="TravelTip.html">TravelTips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AIchatbot.html">AI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+                </ul>
+                <button class="btn btn-gradient ms-1">BookNow</button>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="tips-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Essential Travel Tips</h1>
+                <p class="hero-subtitle">Expert advice to make your journey safer, smarter, and more enjoyable</p>
+                <a href="#travel-tips" class="btn btn-gradient btn-lg mt-3">Explore Tips</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Tips Section -->
+    <section class="tips-section" id="travel-tips">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Smart Travel Advice</h2>
+            
+            <!-- Featured Tip -->
+            <div class="featured-tip">
+                <div class="featured-content">
+                    <div class="featured-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3>Pro Traveler Insight</h3>
+                        <p class="mb-0">Always carry photocopies of your important documents (passport, ID, visas) separately from the originals. Store digital copies in a secure cloud service as well. This simple step can save you countless hours if documents are lost or stolen.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Accordion -->
+            <div class="accordion" id="travelTipsAccordion">
+                <!-- Safety Tips -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#safety">
+                            <div class="tip-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span>Safety & Security</span>
+                        </button>
+                    </h2>
+                    <div id="safety" class="accordion-collapse collapse show" data-bs-parent="#travelTipsAccordion">
+                        <div class="accordion-body">
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Research Your Destination</div>
+                                    <div class="tip-text">Check travel advisories and local laws before you go. Understand cultural norms and areas to avoid.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Secure Your Belongings</div>
+                                    <div class="tip-text">Use anti-theft bags and always keep valuables in your carry-on. Never leave bags unattended in public areas.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Stay Connected</div>
+                                    <div class="tip-text">Share your itinerary with someone back home. Check in regularly and have local emergency numbers saved.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Be Aware of Scams</div>
+                                    <div class="tip-text">Research common tourist scams in your destination. Be cautious with strangers offering unsolicited help.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Trust Your Instincts</div>
+                                    <div class="tip-text">If a situation feels unsafe, remove yourself immediately. Better to be cautious than regretful.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Packing Tips -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#packing">
+                            <div class="tip-icon">
+                                <i class="fas fa-suitcase-rolling"></i>
+                            </div>
+                            <span>Packing Essentials</span>
+                        </button>
+                    </h2>
+                    <div id="packing" class="accordion-collapse collapse" data-bs-parent="#travelTipsAccordion">
+                        <div class="accordion-body">
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">The Packing Formula</div>
+                                    <div class="tip-text">Lay out everything you think you need, then remove half. Pack versatile clothing that can be mixed and matched.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Essential Carry-On Items</div>
+                                    <div class="tip-text">Medications, one change of clothes, chargers, travel documents, and valuables should always be in your carry-on.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Organize with Packing Cubes</div>
+                                    <div class="tip-text">Use compression packing cubes to maximize space and keep items organized by category or day.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Tech Essentials</div>
+                                    <div class="tip-text">Universal adapter, portable charger, noise-canceling headphones, and backup storage for photos.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">First Aid & Toiletries</div>
+                                    <div class="tip-text">Basic medications, bandages, hand sanitizer, sunscreen, insect repellent, and personal hygiene items.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Health Tips -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#health">
+                            <div class="tip-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <span>Health & Wellness</span>
+                        </button>
+                    </h2>
+                    <div id="health" class="accordion-collapse collapse" data-bs-parent="#travelTipsAccordion">
+                        <div class="accordion-body">
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Vaccinations & Medications</div>
+                                    <div class="tip-text">Consult a travel clinic 6-8 weeks before departure. Get recommended vaccinations and fill prescriptions.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Stay Hydrated</div>
+                                    <div class="tip-text">Drink bottled water in areas with questionable water quality. Carry a reusable water bottle with filter.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Jet Lag Management</div>
+                                    <div class="tip-text">Adjust sleep schedule before departure. Stay hydrated, avoid alcohol, and get sunlight upon arrival.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Food Safety</div>
+                                    <div class="tip-text">Eat at busy restaurants, avoid raw foods in questionable areas, and peel fruits yourself.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Travel Insurance</div>
+                                    <div class="tip-text">Never travel without comprehensive insurance that covers medical emergencies and evacuation.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Budget Tips -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#budget">
+                            <div class="tip-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <span>Budget & Money</span>
+                        </button>
+                    </h2>
+                    <div id="budget" class="accordion-collapse collapse" data-bs-parent="#travelTipsAccordion">
+                        <div class="accordion-body">
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Multiple Payment Methods</div>
+                                    <div class="tip-text">Carry a mix of cash, credit cards, and a backup debit card. Store them in different locations.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Notify Your Bank</div>
+                                    <div class="tip-text">Inform your bank of travel plans to avoid card freezes. Know international transaction fees.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Local Currency</div>
+                                    <div class="tip-text">Get some local currency before arrival for immediate expenses. Use ATMs for better exchange rates.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Daily Budget Tracking</div>
+                                    <div class="tip-text">Use budgeting apps to track expenses. Set daily spending limits to avoid overspending.</div>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-content">
+                                    <div class="tip-title">Save on Accommodations</div>
+                                    <div class="tip-text">Consider alternatives like vacation rentals, hostels, or loyalty programs for better deals.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+    </section>
+
+    <!-- Footer -->
+        <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="navbar-brand mb-3"><i class="fas fa-compass"></i>TravelBuddy</h3>
+                    <p>Creating unforgettable travel experiences since 2010. We specialize in personalized journeys to the world's most breathtaking destinations.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h4 class="footer-title">Explore</h4>
+                    <ul class="list-unstyled">
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Plan Trips</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Travel Tips</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">AI Chatbot</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">Gallery</a></li>
+                        <li class="links mb-2"><a href="#" class="text-white text-decoration-none">About</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Travel Street, NewYork</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@travelbuddy.com</li>
+                         <li class="mb-2"><i class="fas fa-clock me-2"></i>Mon-Fri: 9AM - 6PM</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 ml-5">
+                    <h4 class="footer-title">Newsletter</h4>
+                    <p>Subscribe to our newsletter for travel updates and exclusive offers.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button class="btn btn-gradient" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-4 border-top border-secondary">
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
